@@ -1,6 +1,7 @@
 import Banner from "@/componets/home/Banner";
 import Content from "@/componets/home/Content";
 import NewRoom from "@/componets/home/NewRoom";
+import NewSectionns from "@/componets/home/NewSectionns";
 
 export default function Home() {
   return (
@@ -10,6 +11,8 @@ export default function Home() {
       <Content />
 
       <NewRoom />
+      
+      <NewSectionns />
       
     </div>
   );
