@@ -3,7 +3,7 @@ import React from 'react';
 
 const Feedbackpage = () => {
     return (
-        <div className="">
+        <div className=" pt-20">
             <ContentFeedback/>
         </div>
     );

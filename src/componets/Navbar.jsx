@@ -1,150 +1,229 @@
 "use client";
 import React, { useState } from "react";
+import { Menu, X, Phone, Mail, MapPin } from "lucide-react";
 import Link from "next/link";
-import { Menu, X, Phone, Search } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "Rooms & Suites", href: "/room" },
+    { name: "Accommodations", href: "/room" },
     { name: "Dining", href: "/feedback" },
     { name: "Experiences", href: "/experiences" },
-    { name: "Offers", href: "/offers" },
+    { name: "Special Offers", href: "/offers" },
   ];
 
   return (
-    <header className="fixed w-full z-50 py-5 text-white transition-all duration-300 bg-slate-900">
-      {/* Top Bar */}
-      <div className="hidden lg:block border-b border-white/10">
-        <div className="container mx-auto px-6 py-2 flex justify-between items-center text-xs tracking-widest text-white/80">
-          <div className="flex gap-4">
-            <span className="flex items-center gap-1 text-white cursor-pointer transition-colors">
-              <Phone size={12} /> +1 (888) 123-4567
-            </span>
-            <span className="flex items-center gap-1 hover:text-white cursor-pointer transition-colors">
-              RESERVATIONS@LUXESTAY.COM
-            </span>
-          </div>
-          <div className="flex gap-4">
-            <span className="cursor-pointer hover:text-white transition-colors">
-              EN
-            </span>
+    <>
+      {/* Announcement Bar */}
+
+      {/* Main Navbar */}
+      <header className="fixed w-full z-50 bg-slate-900 py-5 transition-all duration-300">
+        {/* Top Contact Bar - Desktop Only */}
+        <div className="hidden lg:block border-b border-white/10">
+          <div className="container mx-auto px-8 py-3 flex justify-between items-center">
+            <div className="flex gap-8 text-xs tracking-wider text-white/70">
+              <a
+                href="tel:+18881234567"
+                className="flex items-center gap-2 hover:text-amber-400 transition-colors duration-300"
+              >
+                <Phone size={14} />
+                <span>01613410880</span>
+              </a>
+              <a
+                href="mailto:reservations@luxestay.com"
+                className="flex items-center gap-2 hover:text-amber-400 transition-colors duration-300"
+              >
+                <Mail size={14} />
+                <span>RESERVATIONS@LUXESTAY.COM</span>
+              </a>
+              <span className="flex items-center gap-2">
+                <MapPin size={14} />
+                <span>MIAMI BEACH, FLORIDA</span>
+              </span>
+            </div>
+            <div className="flex gap-6 text-xs tracking-wider">
+              <button className="text-white/70 hover:text-amber-400 transition-colors duration-300">
+                EN
+              </button>
+              <span className="text-white/30">|</span>
+              <button className="text-white/70 hover:text-amber-400 transition-colors duration-300">
+                USD
+              </button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="container mx-auto px-6">
-        <nav className="flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="relative z-50">
-            <span className="text-2xl font-serif text-white tracking-[0.2em] font-bold">
-              LUXE<span className="text-amber-500">STAY</span>
-            </span>
-          </Link>
+        {/* Main Navigation */}
+        <div className="container mx-auto px-6 lg:px-8">
+          <nav className="flex items-center justify-between">
+            {/* Logo */}
+            <Link href="/" className="relative z-50 group">
+              <div className="flex flex-col">
+                <span className="text-3xl font-serif text-white tracking-[0.3em] font-light">
+                  LUXE
+                  <span className="text-amber-400 font-normal">STAY</span>
+                </span>
+                <span className="text-[9px] tracking-[0.4em] text-white/60 mt-1 group-hover:text-amber-400 transition-colors duration-300">
+                  LUXURY RESORT & SPA
+                </span>
+              </div>
+            </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
-            {navLinks.map((link) => (
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center space-x-1">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="relative px-5 py-2 text-[11px] uppercase tracking-[0.15em] font-medium text-white/90 hover:text-white transition-all duration-300 group"
+                >
+                  {link.name}
+                  <span className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-amber-400 transition-all duration-300 group-hover:w-3/4 group-hover:left-[12.5%]"></span>
+                </a>
+              ))}
+            </div>
+
+            {/* Right Side Actions */}
+            <div className="hidden lg:flex items-center gap-3">
               <Link
+                href="/login"
+                className="text-white/90 hover:text-amber-400 px-4 py-2 text-[11px] uppercase tracking-[0.15em] font-medium transition-colors duration-300"
+              >
+                Sign In
+              </Link>
+              <Link
+                href="/register"
+                className="text-white/90 hover:text-amber-400 px-4 py-2 text-[11px] uppercase tracking-[0.15em] font-medium transition-colors duration-300"
+              >
+                Sign Up
+              </Link>
+
+              <div className="w-[1px] h-5 bg-white/20"></div>
+
+              <Link
+                href="/book"
+                className="relative bg-amber-500 hover:bg-amber-600 text-white px-8 py-3 text-[11px] uppercase tracking-[0.15em] font-semibold transition-all duration-300 overflow-hidden group"
+              >
+                <span className="relative z-10">Reserve Now</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-amber-600 to-amber-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+              </Link>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="lg:hidden relative z-50 w-10 h-10 flex items-center justify-center text-white focus:outline-none"
+            >
+              <div className="relative w-6 h-5">
+                <span
+                  className={`absolute w-full h-0.5 bg-white transition-all duration-300 ${
+                    isOpen
+                      ? "top-1/2 rotate-45 transform -translate-y-1/2"
+                      : "top-0"
+                  }`}
+                ></span>
+                <span
+                  className={`absolute w-full h-0.5 bg-white top-1/2 transform -translate-y-1/2 transition-all duration-300 ${
+                    isOpen ? "opacity-0" : "opacity-100"
+                  }`}
+                ></span>
+                <span
+                  className={`absolute w-full h-0.5 bg-white transition-all duration-300 ${
+                    isOpen
+                      ? "top-1/2 -rotate-45 transform -translate-y-1/2"
+                      : "bottom-0"
+                  }`}
+                ></span>
+              </div>
+            </button>
+          </nav>
+        </div>
+      </header>
+
+      {/* Mobile Menu */}
+      <div
+        className={`fixed inset-0 z-40 lg:hidden transition-all duration-500 ${
+          isOpen ? "visible" : "invisible"
+        }`}
+      >
+        {/* Backdrop */}
+        <div
+          className={`absolute inset-0 bg-slate-900/98 backdrop-blur-sm transition-opacity duration-500 ${
+            isOpen ? "opacity-100" : "opacity-0"
+          }`}
+          onClick={() => setIsOpen(false)}
+        ></div>
+
+        {/* Menu Content */}
+        <div
+          className={`relative h-full flex flex-col justify-center items-center transition-all duration-500 delay-100 ${
+            isOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
+          {/* Mobile Logo */}
+          <div className="absolute top-8 left-1/2 transform -translate-x-1/2">
+            <span className="text-2xl font-serif text-white tracking-[0.3em] font-light">
+              LUXE<span className="text-amber-400">STAY</span>
+            </span>
+          </div>
+
+          {/* Navigation Links */}
+          <div className="flex flex-col items-center space-y-6 mb-12">
+            {navLinks.map((link, index) => (
+              <a
                 key={link.name}
                 href={link.href}
-                className="text-sm uppercase tracking-widest font-medium transition-colors hover:text-amber-500 text-white"
+                onClick={() => setIsOpen(false)}
+                className="text-white text-xl font-light tracking-[0.2em] hover:text-amber-400 transition-all duration-300 transform hover:scale-105"
+                style={{
+                  transitionDelay: isOpen ? `${index * 50}ms` : "0ms",
+                }}
               >
                 {link.name}
-              </Link>
+              </a>
             ))}
           </div>
 
-          {/* Right Side Actions */}
-          <div className="hidden lg:flex items-center gap-4">
-            <button className="transition-colors text-white">
-              <Search size={20} />
-            </button>
-
-            {/* Login Button */}
-            <Link
-              href="/login"
-              className="text-white hover:text-amber-500 px-4 py-2 text-xs uppercase tracking-widest font-semibold transition-colors"
+          {/* Mobile Contact Info */}
+          <div className="flex flex-col items-center gap-4 mb-8 text-white/70 text-sm">
+            <a
+              href="tel:+18881234567"
+              className="flex items-center gap-2 hover:text-amber-400 transition-colors"
             >
-              Login
-            </Link>
-
-            {/* Register Button */}
-            <Link
-              href="/register"
-              className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 text-xs uppercase tracking-widest font-bold transition-all duration-300 rounded"
+              <Phone size={16} />
+              <span>+1 (888) 123-4567</span>
+            </a>
+            <a
+              href="mailto:reservations@luxestay.com"
+              className="flex items-center gap-2 hover:text-amber-400 transition-colors"
             >
-              Register
-            </Link>
-
-            {/* Book Now Button */}
-            <Link
-              href="/book"
-              className="bg-white hover:bg-gray-100 text-slate-900 px-6 py-3 text-xs uppercase tracking-widest font-bold transition-all duration-300 rounded"
-            >
-              Book Now
-            </Link>
+              <Mail size={16} />
+              <span>RESERVATIONS@LUXESTAY.COM</span>
+            </a>
           </div>
-
-          {/* Mobile Menu Button */}
-          <div className="lg:hidden flex items-center z-50">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="focus:outline-none transition-colors text-white"
-            >
-              {isOpen ? <X size={28} /> : <Menu size={28} />}
-            </button>
-          </div>
-        </nav>
-      </div>
-
-      {/* Mobile Menu Overlay */}
-      <div
-        className={`fixed inset-0 bg-white z-40 transition-transform duration-500 ease-in-out lg:hidden ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        <div className="flex flex-col items-center justify-center h-full space-y-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              onClick={() => setIsOpen(false)}
-              className="text-2xl font-serif text-slate-900 hover:text-amber-600 transition-colors"
-            >
-              {link.name}
-            </Link>
-          ))}
 
           {/* Mobile Auth Buttons */}
-          <div className="flex flex-col gap-4 mt-8">
-            <Link
+          <div className="flex flex-col gap-4 w-full max-w-xs px-6">
+            <a
               href="/login"
               onClick={() => setIsOpen(false)}
-              className="border-2 border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white px-10 py-3 text-sm uppercase tracking-widest font-bold text-center transition-all"
+              className="border border-white/30 text-white hover:bg-white hover:text-slate-900 px-8 py-4 text-xs uppercase tracking-[0.2em] font-semibold text-center transition-all duration-300"
             >
-              Login
-            </Link>
-            <Link
-              href="/register"
-              onClick={() => setIsOpen(false)}
-              className="bg-amber-600 hover:bg-amber-700 text-white px-10 py-3 text-sm uppercase tracking-widest font-bold text-center transition-all"
-            >
-              Register
-            </Link>
-            <Link
+              Sign In
+            </a>
+            <a
               href="/book"
               onClick={() => setIsOpen(false)}
-              className="bg-slate-900 text-white px-10 py-4 text-sm uppercase tracking-widest font-bold text-center"
+              className="bg-amber-500 hover:bg-amber-600 text-white px-8 py-4 text-xs uppercase tracking-[0.2em] font-semibold text-center transition-all duration-300"
             >
-              Book Your Stay
-            </Link>
+              Reserve Your Stay
+            </a>
           </div>
         </div>
       </div>
-    </header>
+    </>
   );
 };
 
