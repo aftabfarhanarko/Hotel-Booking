@@ -1,6 +1,7 @@
 import { Bai_Jamjuree } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/componets/Navbar";
+import Footer from "@/componets/Footer";
 
 const baiJamjuree = Bai_Jamjuree({
   variable: "--font-bai-jamjuree",
@@ -23,6 +24,7 @@ export default function RootLayout({ children }) {
           <Navbar />
         </nav>
         {children}
+        <Footer/>
       </body>
     </html>
   );

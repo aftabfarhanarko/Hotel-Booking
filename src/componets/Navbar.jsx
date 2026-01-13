@@ -22,8 +22,8 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "Rooms & Suites", href: "/rooms" },
-    { name: "Dining", href: "/dining" },
+    { name: "Rooms & Suites", href: "/room" },
+    { name: "Dining", href: "/feedback" },
     { name: "Experiences", href: "/experiences" },
     { name: "Offers", href: "/offers" },
   ];

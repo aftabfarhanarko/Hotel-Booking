@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Roompage = () => {
+const Loginpage = () => {
     return (
         <div>
-            All Hotel Rooms
+            
         </div>
     );
 };
 
-export default Roompage;
+export default Loginpage;
