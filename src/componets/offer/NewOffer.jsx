@@ -18,7 +18,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 
-const NewOffer = () => {
+const NewOffer = ({ data }) => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedDiscount, setSelectedDiscount] = useState("all");
   const [favorites, setFavorites] = useState([]);
@@ -774,8 +774,6 @@ const NewOffer = () => {
           </div>
         )}
       </div>
-
-   
 
       <style jsx>{`
         @keyframes float {
