@@ -2,17 +2,20 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { User, Mail, Lock, ImagePlus, Globe } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const RegisterContext = () => {
+  const params = useSearchParams();
+  const router = useRouter();
+  // const callback = params.get("callbackUrl") || "/";
+  console.log(params, router);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-    watch,
   } = useForm();
-
-  const photo = watch("photo");
 
   const onSubmit = (data) => {
     console.log("Register Data:", {
@@ -139,7 +142,7 @@ const RegisterContext = () => {
                 {errors.photo.message}
               </p>
             )}
-            {photo && photo.length > 0 && (
+            {/* {photo && photo.length > 0 && (
               <div className="mt-3 flex items-center gap-3">
                 <div className="w-12 h-12 rounded-lg overflow-hidden ring-1 ring-white/10">
                   <img
@@ -150,7 +153,7 @@ const RegisterContext = () => {
                 </div>
                 <div className="text-xs text-white/80">{photo[0].name}</div>
               </div>
-            )}
+            )} */}
           </div>
 
           <button

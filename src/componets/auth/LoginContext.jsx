@@ -2,8 +2,14 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Mail, Lock } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const LoginContext = () => {
+    const params = useSearchParams();
+  const router = useRouter();
+  const callback = params.get("callbackUrl") || "/";
+  console.log(params, router, callback);
+  
   const {
     register,
     handleSubmit,
