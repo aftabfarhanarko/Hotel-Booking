@@ -3,6 +3,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Mail, Lock } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 const LoginContext = () => {
     const params = useSearchParams();
@@ -17,16 +18,18 @@ const LoginContext = () => {
     reset,
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log("Register Data:", {
-      ...data,
-      photo: data.photo && data.photo.length ? data.photo[0].name : null,
+  const onSubmit = async (data) => {
+    await signIn("credentials", {
+      email: data.email,
+      password: data.password,
+      redirect: true,
+      callbackUrl: callback,
     });
     reset();
   };
 
   const handleGoogleLogin = () => {
-    console.log("Google login clicked");
+    signIn("google", { callbackUrl: callback });
   };
 
   return (
@@ -50,7 +53,7 @@ const LoginContext = () => {
             </svg>
           </div>
           <h1 className="text-3xl font-bold  mb-2">Please Sign in Now</h1>
-          <p className="">Sign Up to continue to your account</p>
+          <p className="">Sign In to continue to your account</p>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
@@ -110,7 +113,7 @@ const LoginContext = () => {
             type="submit"
             className="w-full mt-5 bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
           >
-            Sing Up
+            Sign In
           </button>
         </form>
 

@@ -3,11 +3,12 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { User, Mail, Lock, ImagePlus, Globe } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 const RegisterContext = () => {
   const params = useSearchParams();
   const router = useRouter();
-  // const callback = params.get("callbackUrl") || "/";
+  const callback = params.get("callbackUrl") || "/";
   console.log(params, router);
 
   const {
@@ -17,16 +18,37 @@ const RegisterContext = () => {
     reset,
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log("Register Data:", {
-      ...data,
-      photo: data.photo && data.photo.length ? data.photo[0].name : null,
-    });
+  const onSubmit = async (data) => {
+    try {
+      // Call register API
+      const res = await fetch("/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          password: data.password,
+          // Handle photo upload separately if needed, for now just passing name/email/pass
+        }),
+      });
+
+      if (res.ok) {
+        // Auto login after register
+        await signIn("credentials", {
+          email: data.email,
+          password: data.password,
+          redirect: true,
+          callbackUrl: callback,
+        });
+      }
+    } catch (error) {
+      console.error("Registration failed:", error);
+    }
     reset();
   };
 
   const handleGoogleLogin = () => {
-    console.log("Google login clicked");
+    signIn("google", { callbackUrl: callback });
   };
 
   return (
@@ -154,7 +176,7 @@ const RegisterContext = () => {
                 <div className="text-xs text-white/80">{photo[0].name}</div>
               </div>
             )} */}
-          </div>
+          </div> 
 
           <button
             type="submit"

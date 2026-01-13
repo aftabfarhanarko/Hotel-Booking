@@ -1,35 +1,45 @@
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
+
 export const authOptions = {
   providers: [
+    GoogleProvider({
+      clientId: process.env.CLIENT_ID || "",
+      clientSecret: process.env.CLIENT_SECRET || "",
+    }),
     CredentialsProvider({
-      // The name to display on the sign in form (e.g. 'Sign in with...')
       name: "Credentials",
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "jsmith" },
+        email: { label: "Email", type: "email", placeholder: "you@example.com" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials, req) {
-        const res = await fetch("/your/endpoint", {
-          method: "POST",
-          body: JSON.stringify(credentials),
-          headers: { "Content-Type": "application/json" },
-        });
-        const user = await res.json();
-
-        // If no error and we have user data, return it
-        if (res.ok && user) {
-          return user;
+      async authorize(credentials) {
+        // Mock user validation logic
+        if (credentials?.email && credentials?.password) {
+          // In a real app, you would verify against DB here
+          return {
+            id: "1",
+            name: "Test User",
+            email: credentials.email,
+            image: "https://github.com/shadcn.png",
+          };
         }
-        // Return null if user data could not be retrieved
         return null;
       },
     }),
   ],
+  pages: {
+    signIn: '/login', // Adjust if your login page path is different
+  },
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
       return true;
     },
     async redirect({ url, baseUrl }) {
+      // Allows relative callback URLs
+      if (url.startsWith("/")) return `${baseUrl}${url}`;
+      // Allows callback URLs on the same origin
+      else if (new URL(url).origin === baseUrl) return url;
       return baseUrl;
     },
     async session({ session, user, token }) {
@@ -39,4 +49,5 @@ export const authOptions = {
       return token;
     },
   },
+  secret: process.env.NEXTAUTH_SECRET,
 };
