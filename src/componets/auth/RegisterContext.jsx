@@ -1,7 +1,7 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { User, Mail, Lock, ImagePlus, Globe } from "lucide-react";
+import { User, Mail, Lock, ImagePlus, Globe, EyeOff, Eye } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { uploadToImgBB } from "@/lib/uploadToImgBB";
@@ -12,6 +12,7 @@ const RegisterContext = () => {
   const params = useSearchParams();
   const router = useRouter();
   const callback = params.get("callbackUrl") || "/";
+  const [show, setShow] = useState(false);
   // console.log(params, router);
 
   const {
@@ -68,13 +69,9 @@ const RegisterContext = () => {
   };
 
   const handleGoogleLogin = () => {
-    signIn("google", { callbackUrl: callback })
-    .then(res => {
+    signIn("google", { callbackUrl: callback }).then((res) => {
       console.log("This is google ", res);
-      
-    })
-
-
+    });
   };
 
   return (
@@ -148,32 +145,6 @@ const RegisterContext = () => {
 
           <div>
             <label className="block text-sm font-medium text-amber-100 mb-2">
-              Password
-            </label>
-            <div className="relative">
-              <Lock className="absolute inset-y-0 left-3 top-1/2 transform -translate-y-1/2 text-amber-500 w-5 h-5" />
-              <input
-                type="password"
-                {...register("password", {
-                  required: "Password is required",
-                  minLength: {
-                    value: 6,
-                    message: "Password must be at least 6 characters",
-                  },
-                })}
-                className="w-full pl-10 pr-4 py-3 bg-slate-800/50 border border-amber-500/20 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition"
-                placeholder="••••••••"
-              />
-            </div>
-            {errors.password && (
-              <p className="text-red-400 text-sm mt-2">
-                {errors.password.message}
-              </p>
-            )}
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-amber-100 mb-2">
               Profile Photo
             </label>
 
@@ -201,6 +172,47 @@ const RegisterContext = () => {
             {errors.photo && (
               <p className="text-red-400 text-sm mt-2">
                 {errors.photo.message}
+              </p>
+            )}
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-amber-100 mb-2">
+              Password
+            </label>
+
+            <div className="relative">
+              {/* Lock Icon */}
+              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-amber-500 w-5 h-5" />
+
+              {/* Input */}
+              <input
+                type={show ? "text" : "password"}
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 6,
+                    message: "Password must be at least 6 characters",
+                  },
+                })}
+                className="w-full pl-10 pr-12 py-3 bg-slate-800/50 border border-amber-500/20 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition"
+                placeholder="••••••••"
+              />
+
+              {/* Eye Icon */}
+              <button
+                type="button"
+                onClick={() => setShow(!show)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-amber-400"
+              >
+                {show ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
+            </div>
+
+            {/* Error */}
+            {errors.password && (
+              <p className="text-red-400 text-sm mt-2">
+                {errors.password.message}
               </p>
             )}
           </div>

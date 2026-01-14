@@ -16,114 +16,118 @@ export const authOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        // Mock user validation logic
         if (!credentials?.email || !credentials?.password) {
-          return null;
+          throw new Error("Please enter an email and password");
         }
-        // Get Databaase user Data Find
+
         const user = await dbConnect(collections.USER).findOne({
           email: credentials.email,
         });
 
-        // Not Find  User Data Return Null
         if (!user) {
-          return null;
+          throw new Error("No user found with this email");
         }
+
         const isValid = await bcrypt.compare(
           credentials.password,
           user.password
         );
-        // Not Match  User Password Saved in Database and Login Password Not Match  Return Null
+
         if (!isValid) {
-          return null;
+          throw new Error("Incorrect password");
         }
+        console.log("Full User Data", user);
 
         return {
           id: user._id.toString(),
           name: user.name,
           email: user.email,
           image: user.photo || null,
-          role: user.role,
+          role: user.role || "user", // Ensure role is returned
         };
       },
     }),
   ],
 
   pages: {
-    signIn: "/login", // Adjust if your login page path is different
+    signIn: "/login",
+    error: "/login", // Redirect to login on error
   },
+
+  session: {
+    strategy: "jwt",
+  },
+
   callbacks: {
-    async signIn({ user, account, email, credentials }) {
-      console.log("Signin User", { user, account, email, credentials });
+    async signIn({ user, account }) {
       if (account.provider === "credentials") {
-        // Credentials user already exists
         return true;
       }
 
-      // Google Login
-      const usersCollection = dbConnect(collections.USER);
-      console.log("Googl", usersCollection);
+      if (account.provider === "google") {
+        try {
+          const usersCollection = dbConnect(collections.USER);
+          const existingUser = await usersCollection.findOne({
+            email: user.email,
+          });
 
-      const existingUser = await usersCollection.findOne({
-        email: user.email,
-      });
-      console.log("Google login", existingUser);
+          if (!existingUser) {
+            await usersCollection.insertOne({
+              name: user.name,
+              email: user.email,
+              photo: user.image, // Saved as photo
+              role: "user",
+              provider: account.provider,
+              providerAccountId: account.providerAccountId,
+              createdAt: new Date(),
+            });
+          }
+          return true;
+        } catch (error) {
+          console.error("Error saving user to DB:", error);
+          return false;
+        }
+      }
+      return true;
+    },
 
-      if (!existingUser) {
-        await usersCollection.insertOne({
-          name: user.name,
-          email: user.email,
-          photo: user.image,
-          role: "user",
-          provider: account.provider,
-          providerAccountId: account.providerAccountId,
-          createdAt: new Date(),
-        });
+    async jwt({ token, user, account, trigger, session }) {
+      if (trigger === "update" && session?.user) {
+        token.name = session.user.name;
+        token.image = session.user.image;
       }
 
-      return true; // ✅ MUST be boolean
-    },
-
-    async redirect({ url, baseUrl }) {
-      // Allows relative callback URLs
-      if (url.startsWith("/")) return `${baseUrl}${url}`;
-      // Allows callback URLs on the same origin
-      else if (new URL(url).origin === baseUrl) return url;
-      return baseUrl;
-    },
-
-    async session({ session, user, token }) {
-      console.log("This is session", { session, user, token });
-      if (token) {
-        session.user.name = token.name;
-        session.user.email = token.email;
-        session.user.image = token.picture;
-        // session.user.role = token.role;
-      }
-      console.log("Session Connnect NNow", session);
-
-      return session;
-    },
-    async jwt({ token, user, account }) {
-      console.log("TOken", token, user , account);
-      
-       if (user) {
-        if (account.provider == "google") {
+      if (user) {
+        if (account?.provider === "google") {
           const dbUser = await dbConnect(collections.USER).findOne({
             email: user.email,
           });
-          token.name = dbUser.name;
-          token.role = dbUser?.role;
-          token.email = dbUser?.email;
-          token.image = dbUser.image;
+
+          if (dbUser) {
+            token.id = dbUser._id.toString();
+            token.role = dbUser.role || "user";
+            token.image = dbUser.photo;
+          }
         } else {
-          token.name = user.name;
-          token.email = user.email;
-          token.image = user.image;
-          // token.role = user.role;
+          token.id = user.id;
+          token.role = user.role || "user";
+          token.image = user.image || token.image || null;
         }
       }
       return token;
+    },
+
+    async session({ session, token }) {
+      console.log("Sessionn Tokenns", token);
+
+      if (token) {
+        session.user.id = token.id;
+        session.user.name = token.name;
+        session.user.email = token.email;
+        session.user.image = token.image || token.picture || null;
+        session.user.role = token.role;
+      }
+      return session;
     },
   },
 
