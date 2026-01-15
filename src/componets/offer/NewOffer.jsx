@@ -273,7 +273,7 @@ const NewOffer = ({ data }) => {
       <h1>Hotel Avable {data.length}</h1>
 
       {/* Hotel Card */}
-      <div className=" max-w-10/12 mx-auto grid grid-cols-1  md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-10">
+      <div className=" max-w-10/12 mx-auto grid grid-cols-1  md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-10 my-10">
         {data.map((room) => (
           <HotelCard key={room._id} room={room}></HotelCard>
         ))}

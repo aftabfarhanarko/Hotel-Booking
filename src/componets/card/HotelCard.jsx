@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { Heart, MapPin, Star } from "lucide-react";
+import { motion } from "framer-motion";
 import Link from "next/link";
 
 export default function HotelCard({ room }) {
@@ -10,112 +11,123 @@ export default function HotelCard({ room }) {
     room.priceFrom - (room.priceFrom * room.discount) / 100;
 
   return (
-    <div className="max-w-sm bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-      {/* Image Section */}
+    <motion.article
+      className="max-w-sm rounded-3xl bg-slate-950/95 border border-slate-800 shadow-[0_22px_70px_rgba(15,23,42,0.7)] overflow-hidden"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -8, scale: 1.02 }}
+      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+    >
       <div className="relative">
-        <img
+        <motion.img
           src={room.image}
           alt={room.title}
           className="w-full h-64 object-cover"
+          whileHover={{ scale: 1.04 }}
+          transition={{ duration: 0.4 }}
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/10 to-transparent" />
 
-        {/* Discount Badge */}
         {room.discount > 0 && (
-          <div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-            {room.discount}% OFF
+          <div className="absolute top-4 left-4 rounded-full bg-emerald-500 text-white px-3 py-1 text-xs font-semibold shadow-lg shadow-emerald-500/40">
+            {room.discount}% off
           </div>
         )}
 
-        {/* Save Button */}
-        <button
+        <motion.button
           onClick={() => setSaved(!saved)}
-          className="absolute top-4 right-4 bg-white p-2 rounded-full shadow-md hover:scale-110 transition-transform"
+          className="absolute top-4 right-4 bg-slate-950/80 text-slate-100 p-2 rounded-full border border-slate-700 shadow-lg"
+          whileTap={{ scale: 0.9 }}
+          whileHover={{ scale: 1.05 }}
         >
           <Heart
             className={`w-5 h-5 ${
-              saved ? "fill-red-500 text-red-500" : "text-gray-600"
+              saved ? "fill-emerald-400 text-emerald-400" : "text-slate-200"
             }`}
           />
-        </button>
+        </motion.button>
 
-        {/* Category Badge */}
-        <div className="absolute bottom-4 left-4 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-medium uppercase">
-          {room.category}
+        <div className="absolute bottom-4 left-4 flex items-center gap-2">
+          <span className="px-3 py-1 rounded-full bg-slate-950/80 text-[11px] font-medium text-slate-100 border border-slate-700/80">
+            {room.category}
+          </span>
+          <div className="flex items-center gap-1 rounded-full bg-slate-950/80 px-2 py-1 border border-slate-700/80 text-xs text-slate-100">
+            <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
+            <span>{room.rating}</span>
+          </div>
         </div>
       </div>
 
-      {/* Content Section */}
-      <div className="p-5">
-        {/* Title */}
-        <h3 className="text-xl font-bold text-gray-800 mb-2">{room.title}</h3>
-
-        {/* Location */}
-        <div className="flex items-center text-gray-600 mb-3">
-          <MapPin className="w-4 h-4 mr-1" />
-          <span className="text-sm">{room.location}</span>
+      <div className="p-5 space-y-4 text-slate-100">
+        <div>
+          <h3 className="text-lg font-semibold tracking-tight line-clamp-1">
+            {room.title}
+          </h3>
+          <div className="mt-2 flex items-center text-slate-300 text-xs">
+            <MapPin className="w-4 h-4 mr-1 text-emerald-300" />
+            <span className="truncate">{room.location}</span>
+          </div>
         </div>
 
-        {/* Description */}
-        <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+        <p className="text-slate-300 text-xs leading-relaxed line-clamp-2">
           {room.description}
         </p>
 
-        {/* Tags */}
-        <div className="flex flex-wrap gap-2 mb-4">
-          {room.tags.map((tag, index) => (
-            <span
-              key={index}
-              className="bg-gray-100 text-gray-700 px-2 py-1 rounded-md text-xs"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
+        {Array.isArray(room.tags) && room.tags.length > 0 && (
+          <div className="flex flex-wrap gap-2">
+            {room.tags.map((tag, index) => (
+              <span
+                key={index}
+                className="px-2.5 py-1 rounded-full bg-slate-900 text-[10px] uppercase tracking-[0.16em] text-slate-200 border border-slate-700/80"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
 
-        {/* Rating & Reviews */}
-        <div className="flex items-center mb-4">
-          <Star className="w-4 h-4 fill-yellow-400 text-yellow-400 mr-1" />
-          <span className="font-semibold text-gray-800 mr-1">
-            {room.rating}
-          </span>
-          <span className="text-gray-600 text-sm">
-            ({room.reviews} reviews)
-          </span>
-          <span className="text-gray-400 mx-2">•</span>
-          <span className="text-gray-600 text-sm">
+        <div className="flex items-center justify-between text-xs text-slate-300">
+          <div className="flex items-center gap-2">
+            <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+            <span className="font-semibold text-slate-50">
+              {room.rating}
+            </span>
+            <span className="text-slate-400">
+              ({room.reviews} reviews)
+            </span>
+          </div>
+          <span className="text-slate-400">
             {room.saved.toLocaleString()} saved
           </span>
         </div>
 
-        {/* Price & Button */}
-        <div className="flex items-center justify-between pt-4 border-t border-gray-200">
+        <div className="flex items-center justify-between pt-4 border-t border-slate-800">
           <div>
             <div className="flex items-baseline gap-2">
               {room.discount > 0 && (
-                <span className="text-gray-400 line-through text-sm">
+                <span className="text-slate-500 line-through text-xs">
                   ${room.priceFrom}
                 </span>
               )}
-              <span className="text-2xl font-bold text-gray-800">
+              <span className="text-xl font-semibold text-emerald-300">
                 ${discountedPrice}
               </span>
-              <span className="text-gray-600 text-sm">/ night</span>
+              <span className="text-slate-400 text-xs">/ night</span>
             </div>
-            {room.stock <= 15 && (
-              <p className="text-red-500 text-xs mt-1">
-                Only {room.stock} left!
+            {typeof room.stock === "number" && room.stock <= 15 && (
+              <p className="text-rose-400 text-[11px] mt-1">
+                Only {room.stock} left at this price
               </p>
             )}
           </div>
-          {/* <Link> </Link> */}
           <Link
             href={`/offers/${room._id}`}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg transition-colors duration-200"
+            className="inline-flex items-center justify-center rounded-xl bg-emerald-500 px-4 py-2 text-xs font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 hover:bg-emerald-400 transition-colors"
           >
-            View Details
+            View details
           </Link>
         </div>
       </div>
-    </div>
+    </motion.article>
   );
 }

@@ -110,6 +110,10 @@ export default function OfferDetailsClient({ item }) {
     console.log("Saved Data From Database", savedBookData);
   };
 
+  const handleBookingSubmit = (event) => {
+    handleSubmit(onSubmitBooking)(event);
+  };
+
   return (
     <div className="min-h-screen pt-32 pb-20">
       <motion.section
@@ -657,7 +661,7 @@ export default function OfferDetailsClient({ item }) {
               </div>
 
               <form
-                onSubmit={handleSubmit(onSubmitBooking)}
+                onSubmit={handleBookingSubmit}
                 className="p-8 space-y-6 text-sm text-white"
               >
                 {/* Name Fields */}
