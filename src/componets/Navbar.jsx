@@ -10,10 +10,10 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "Home", href: "/" },
+    { name: "Room", href: "/offers" },
     { name: "Accommodations", href: "/room" },
     { name: "Dining", href: "/feedback" },
     { name: "Experiences", href: "/experiences" },
-    { name: "Special Offers", href: "/offers" },
   ];
 
   return (
