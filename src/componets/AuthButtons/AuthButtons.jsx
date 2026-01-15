@@ -9,7 +9,7 @@ const AuthButtons = () => {
   const router = useRouter();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  console.log(session.data?.user);
+  // console.log(session.data?.user);
 
   return (
     <div className="flex gap-2 items-center">

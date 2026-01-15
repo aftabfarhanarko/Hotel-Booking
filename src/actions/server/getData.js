@@ -1,8 +1,23 @@
 "use server";
 
 import { collections, dbConnect } from "@/lib/mongoDbcoect";
+import { ObjectId } from "mongodb";
 
 export const getHotelData = async () => {
   const result = await dbConnect(collections.HOTEL).find().toArray();
-  return result;
+
+  return result.map((item) => ({
+    ...item,
+    _id: item._id.toString(),
+  }));
+};
+
+export const singleData = async (id) => {
+  console.log(id);
+  
+  const result = await dbConnect(collections.HOTEL).findOne({
+    _id: new ObjectId(id),
+  });
+
+   return result
 };
