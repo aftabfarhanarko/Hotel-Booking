@@ -2,17 +2,17 @@ import { singleData } from "@/actions/server/getData";
 import { MapPin, Star, Bed, Users, Clock } from "lucide-react";
 
 const OfferDetailsPage = async ({ params }) => {
-  const { id } = params; // ✅ dynamic id
+  const { id } = await params;
+
 
   // ✅ data fetch
   const item = await singleData(id);
-
-  if (!item) {
-    return <p>Data not found</p>;
-  }
+ console.log(item);
+ 
+ 
 
   return (
-    <div className="mt-20 p-6">
+    <div className=" max-w-10/12 mx-auto pt-40">
       <h1 className="text-2xl font-bold mb-4">{item.title}</h1>
 
       <div className="flex items-center gap-2 text-gray-600 mb-2">

@@ -24,7 +24,7 @@ const Navbar = () => {
       <header className="fixed w-full z-50 bg-slate-900 py-5 transition-all duration-300">
         {/* Top Contact Bar - Desktop Only */}
         <div className="hidden lg:block border-b border-white/10">
-          <div className="container mx-auto px-8 py-3 flex justify-between items-center">
+          <div className=" max-w-10/12 mx-auto lg:px-9 py-3 flex justify-between items-center">
             <div className="flex gap-8 text-xs tracking-wider text-white/70">
               <a
                 href="tel:+18881234567"
@@ -58,7 +58,7 @@ const Navbar = () => {
         </div>
 
         {/* Main Navigation */}
-        <div className="container mx-auto px-6 lg:px-8">
+        <div className=" max-w-10/12 mx-auto px-4 lg:px-0">
           <nav className="flex items-center justify-between">
             {/* Logo */}
             <Link href="/" className="relative z-50 group">
