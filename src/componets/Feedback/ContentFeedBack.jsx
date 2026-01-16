@@ -1,260 +1,305 @@
 "use client";
-import React, { useState } from "react";
-import { Star, Send } from "lucide-react";
+import React from "react";
+import {
+  Star,
+  Heart,
+  MapPin,
+  BedDouble,
+  Bath,
+  UtensilsCrossed,
+  Wifi,
+  Shield,
+  Clock,
+  CarFront,
+  Users,
+  Sparkles,
+  KeyRound,
+} from "lucide-react";
+
+const features = [
+  {
+    Icon: BedDouble,
+    title: "Thoughtfully Designed Rooms",
+    description:
+      "Soft lighting, layered textures, and premium bedding for deep, restorative rest.",
+  },
+  {
+    Icon: MapPin,
+    title: "Heart-of-the-City Locations",
+    description:
+      "Stay minutes from business districts, cultural spots, and nightlife.",
+  },
+  {
+    Icon: Bath,
+    title: "Spa-Level Bathrooms",
+    description:
+      "Rain showers, plush towels, and elevated amenities in every room category.",
+  },
+  {
+    Icon: UtensilsCrossed,
+    title: "Signature Dining & Rooftop",
+    description:
+      "From slow breakfasts to rooftop sundowners, every meal is curated.",
+  },
+  {
+    Icon: Wifi,
+    title: "Fast, Reliable WiFi",
+    description:
+      "Work calls, streaming, and content sharing without any drop in pace.",
+  },
+  {
+    Icon: Clock,
+    title: "Flexible Check-In Options",
+    description:
+      "Early arrivals and late departures supported whenever availability allows.",
+  },
+  {
+    Icon: CarFront,
+    title: "Seamless Arrival Experience",
+    description:
+      "Airport transfers, valet parking, and quick lobby check-in for every stay.",
+  },
+  {
+    Icon: Shield,
+    title: "Safety & Peace of Mind",
+    description:
+      "24/7 security, monitored access, and hygiene standards you can trust.",
+  },
+  {
+    Icon: Users,
+    title: "Guest-First Service",
+    description:
+      "A concierge team trained to understand your preferences and anticipate needs.",
+  },
+  {
+    Icon: KeyRound,
+    title: "Smart Room Controls",
+    description:
+      "Digital keys, lighting, and temperature that adapt to your comfort.",
+  },
+  {
+    Icon: Sparkles,
+    title: "Curated Experiences",
+    description:
+      "City tours, wellness sessions, and private events designed for modern travelers.",
+  },
+  {
+    Icon: Star,
+    title: "Consistently Loved by Guests",
+    description:
+      "High satisfaction scores across stays, events, and long-weekend escapes.",
+  },
+];
+
+const stayTypes = [
+  {
+    label: "Business stays",
+    title: "Plug-in and present-ready",
+    description:
+      "Desk-friendly rooms, quiet zones, and lobby spaces designed for quick calls between meetings.",
+    highlight: "Same-day laundry and flexible checkout for late flights.",
+  },
+  {
+    label: "Couples & celebrations",
+    title: "Evenings that feel cinematic",
+    description:
+      "Soft lighting, rooftop views, and in-room touches made for anniversaries and weekends away.",
+    highlight: "Curated dining and surprise room setups on request.",
+  },
+  {
+    label: "Extended stays",
+    title: "A longer stay that feels like home",
+    description:
+      "Spacious layouts, storage for luggage, and everyday comforts when you are in the city for more than a few nights.",
+    highlight: "Preferential rates and priority support for repeat guests.",
+  },
+];
+
+const promisePoints = [
+  {
+    title: "Clear communication",
+    description:
+      "Instant confirmations, pre-arrival messages, and quick answers before you even check in.",
+  },
+  {
+    title: "Consistent standards",
+    description:
+      "The same warm welcome, made bed, and ready room — no matter which floor or room type you book.",
+  },
+  {
+    title: "Human support, 24/7",
+    description:
+      "Real people at the desk and on chat whenever travel plans shift or you need something extra.",
+  },
+  {
+    title: "Always improving",
+    description:
+      "We review every rating and comment to adjust the small details of your next stay.",
+  },
+];
 
 const ContentFeedback = () => {
-  const [rating, setRating] = useState(5);
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [submitted, setSubmitted] = useState(false);
-  const [hoveredStar, setHoveredStar] = useState(0);
-
-  const testimonials = [
-    {
-      name: "Amelia R.",
-      text: "Serene spaces and impeccable service.",
-      rating: 5,
-    },
-    { name: "Luca M.", text: "Outstanding dining and warm staff.", rating: 5 },
-    {
-      name: "Hana K.",
-      text: "Refined rooms, effortless experience.",
-      rating: 5,
-    },
-  ];
-
-  const handleChange = (e) => {
-    setForm((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Feedback submitted:", { ...form, rating });
-
-    setSubmitted(true);
-    setTimeout(() => {
-      setForm({ name: "", email: "", message: "" });
-      setRating(5);
-      setSubmitted(false);
-    }, 3000);
-  };
-
   return (
-    <section className="bg-white text-gray-900 py-20 relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-amber-500 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
+    <section className="bg-white text-slate-900 py-20 relative overflow-hidden">
+      <div className="absolute inset-0 opacity-30 pointer-events-none">
+        <div className="absolute -top-32 -left-24 w-96 h-96 bg-amber-500/40 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-[-10rem] w-[32rem] h-[32rem] bg-slate-900/70 rounded-full blur-3xl" />
       </div>
 
-      <div className="container mx-auto max-w-7xl px-6 relative z-10">
-        {/* Header Section */}
-        <div className="text-center mb-16">
-          <div className="inline-block mb-4">
-            <div className="flex items-center gap-2 text-amber-500 mb-3">
-              {Array(5)
-                .fill(0)
-                .map((_, i) => (
-                  <Star
-                    key={i}
-                    size={20}
-                    className="fill-amber-500 text-amber-500 animate-pulse"
-                    style={{ animationDelay: `${i * 0.1}s` }}
-                  />
-                ))}
+      <div className="relative max-w-6xl mx-auto px-6">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] items-center mb-16">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full bg-amber-50 px-4 py-1 text-xs font-semibold text-amber-800 border border-amber-100 mb-4">
+              <Sparkles className="w-4 h-4 text-amber-500" />
+              <span>Why guests choose our stays</span>
+            </div>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4">
+              Designed around how you actually travel
+            </h1>
+            <p className="text-base md:text-lg text-slate-600 mb-6 max-w-xl">
+              From first tap on the booking button to your final checkout, every
+              touchpoint in our hotel is built to feel smooth, intuitive, and
+              genuinely welcoming.
+            </p>
+            <div className="flex flex-wrap gap-6 text-sm">
+              <div>
+                <div className="flex items-center gap-1 text-amber-500 mb-1">
+                  <Star className="w-4 h-4 fill-amber-500" />
+                  <Star className="w-4 h-4 fill-amber-500" />
+                  <Star className="w-4 h-4 fill-amber-500" />
+                  <Star className="w-4 h-4 fill-amber-500" />
+                  <Star className="w-4 h-4 fill-amber-500" />
+                </div>
+                <p className="font-semibold text-slate-900">4.9 / 5 average stay rating</p>
+                <p className="text-slate-500 text-xs">
+                  Based on verified guest reviews across all room types.
+                </p>
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-slate-900">12</p>
+                <p className="text-slate-500 text-xs">
+                  Core features crafted for modern city stays.
+                </p>
+              </div>
             </div>
           </div>
 
-          <h2 className="text-5xl md:text-6xl font-serif font-bold mb-4 bg-gradient-to-r from-gray-900 via-amber-700 to-gray-900 bg-clip-text text-transparent">
-            Your Voice Matters
-          </h2>
-
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-2">
-            Help us craft unforgettable experiences through your insights
-          </p>
-
-          <div className="flex items-center justify-center gap-8 mt-8">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-amber-600">1,248</div>
-              <div className="text-sm text-gray-500">Reviews</div>
+          <div className="relative">
+            <div className="rounded-3xl overflow-hidden border border-slate-200 shadow-[0_22px_70px_rgba(15,23,42,0.18)]">
+              <img
+                src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=1200"
+                alt="Guests relaxing in a modern hotel lobby"
+                className="w-full h-72 md:h-80 object-cover"
+              />
             </div>
-            <div className="w-px h-12 bg-gray-300"></div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-amber-600">4.9</div>
-              <div className="text-sm text-gray-500">Rating</div>
-            </div>
-            <div className="w-px h-12 bg-gray-300"></div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-amber-600">98%</div>
-              <div className="text-sm text-gray-500">Satisfaction</div>
+            <div className="absolute -bottom-6 left-6 bg-white rounded-2xl shadow-lg border border-slate-100 px-4 py-3 flex items-center gap-3">
+              <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center">
+                <Heart className="w-4 h-4 text-amber-600" />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-slate-900">
+                  Guests say it feels like “home, but elevated”.
+                </p>
+                <p className="text-xs text-slate-500">
+                  Seamless arrivals, warm staff, and intuitive spaces.
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Left - Reviews */}
+        <div className="mb-8 flex items-center justify-between gap-4">
           <div>
-            <div className="mb-6">
-              <h3 className="text-sm tracking-[0.35em] uppercase text-amber-500">
-                Guest Feedback
+            <h2 className="text-2xl md:text-3xl font-semibold">
+              12 features guests notice first
+            </h2>
+            <p className="mt-1 text-sm md:text-base text-slate-600 max-w-xl">
+              Every detail is tuned to make your stay smoother, calmer, and more
+              memorable — whether you are here for work, rest, or celebration.
+            </p>
+          </div>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {features.map((item) => (
+            <div
+              key={item.title}
+              className="group bg-white rounded-2xl border border-slate-100 p-6 shadow-sm hover:shadow-lg hover:border-amber-200 transition-all duration-200"
+            >
+              <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center mb-4 group-hover:bg-amber-100">
+                <item.Icon className="w-5 h-5" />
+              </div>
+              <h3 className="text-base md:text-lg font-semibold text-slate-900 mb-2">
+                {item.title}
               </h3>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                {item.description}
+              </p>
             </div>
+          ))}
+        </div>
 
-            <div className="rounded-2xl bg-gray-50 border border-gray-200 p-6">
-              <div className="flex items-center gap-3">
-                <div className="text-4xl font-serif font-bold text-gray-900">
-                  4.9
+        <div className="mt-20 grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] items-start">
+          <div>
+            <h2 className="text-2xl md:text-3xl font-semibold mb-3">
+              Built for different ways of staying
+            </h2>
+            <p className="text-sm md:text-base text-slate-600 max-w-xl">
+              Whether you are checking in for a quick night, a city break, or a
+              multi-week project, our spaces flex with the way you travel.
+            </p>
+            <div className="mt-8 space-y-5">
+              {stayTypes.map((item) => (
+                <div
+                  key={item.label}
+                  className="rounded-2xl border border-slate-100 bg-slate-50/60 p-5 hover:border-amber-200 hover:bg-white transition-all"
+                >
+                  <p className="text-[11px] font-semibold tracking-[0.25em] uppercase text-amber-600 mb-1">
+                    {item.label}
+                  </p>
+                  <h3 className="text-base md:text-lg font-semibold text-slate-900 mb-1">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-slate-600 mb-2">
+                    {item.description}
+                  </p>
+                  <p className="text-xs text-amber-700 font-medium">
+                    {item.highlight}
+                  </p>
                 </div>
-                <div className="flex items-center gap-1 text-amber-500">
-                  {Array(5)
-                    .fill(0)
-                    .map((_, i) => (
-                      <Star
-                        key={i}
-                        size={18}
-                        className="fill-amber-500 text-amber-500"
-                      />
-                    ))}
-                </div>
-                <div className="text-gray-600 text-sm">(1,248 reviews)</div>
-              </div>
-
-              <div className="mt-6 space-y-6">
-                {testimonials.map((t) => (
-                  <div
-                    key={t.name}
-                    className="rounded-xl bg-white border border-gray-200 p-5"
-                  >
-                    <div className="flex items-center gap-2 text-amber-500 mb-2">
-                      {Array(t.rating)
-                        .fill(0)
-                        .map((_, i) => (
-                          <Star
-                            key={i}
-                            size={16}
-                            className="fill-amber-500 text-amber-500"
-                          />
-                        ))}
-                    </div>
-                    <p className="text-gray-800">{t.text}</p>
-                    <div className="mt-2 text-gray-500 text-sm">— {t.name}</div>
-                  </div>
-                ))}
-              </div>
+              ))}
             </div>
           </div>
 
-          {/* Right - Form */}
-          <div>
-            <div className="mb-6">
-              <h3 className="text-sm tracking-[0.35em] uppercase text-amber-500">
-                Share Your Experience
-              </h3>
+          <div className="rounded-3xl border border-slate-100 bg-slate-900 text-slate-50 p-7 shadow-[0_18px_45px_rgba(15,23,42,0.45)]">
+            <div className="inline-flex items-center gap-2 rounded-full bg-slate-800/80 px-3 py-1 text-[11px] font-semibold tracking-[0.24em] uppercase text-amber-200 border border-slate-700 mb-4">
+              <Star className="w-3.5 h-3.5 text-amber-300" />
+              <span>Our service promise</span>
             </div>
-
-            <div className="rounded-2xl bg-gray-50 border border-gray-200 p-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input
-                  name="name"
-                  value={form.name}
-                  onChange={handleChange}
-                  placeholder="Full Name"
-                  className="rounded-md bg-white text-gray-900 placeholder-gray-400 border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-                />
-                <input
-                  name="email"
-                  type="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  placeholder="Email Address"
-                  className="rounded-md bg-white text-gray-900 placeholder-gray-400 border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-                />
-              </div>
-
-              <div className="mt-4">
-                <textarea
-                  name="message"
-                  value={form.message}
-                  onChange={handleChange}
-                  placeholder="Your feedback..."
-                  rows={5}
-                  className="w-full rounded-md bg-white text-gray-900 placeholder-gray-400 border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent resize-none"
-                />
-              </div>
-
-              <div className="mt-5">
-                <div className="text-gray-700 text-sm mb-2 font-medium">
-                  Your Rating
+            <h3 className="text-xl md:text-2xl font-semibold mb-3">
+              What you can always expect with us
+            </h3>
+            <p className="text-sm text-slate-300 mb-5">
+              Every stay is backed by a simple promise: clear communication,
+              consistent spaces, and people who genuinely care about your time
+              here.
+            </p>
+            <div className="space-y-4">
+              {promisePoints.map((item) => (
+                <div key={item.title} className="flex gap-3">
+                  <div className="mt-1 w-6 h-6 rounded-full bg-emerald-500/15 border border-emerald-400/40 flex items-center justify-center flex-shrink-0">
+                    <Heart className="w-3.5 h-3.5 text-emerald-300" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-slate-50">
+                      {item.title}
+                    </p>
+                    <p className="text-xs text-slate-300 mt-0.5">
+                      {item.description}
+                    </p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-1">
-                  {Array(5)
-                    .fill(0)
-                    .map((_, i) => {
-                      const value = i + 1;
-                      const isActive = value <= (hoveredStar || rating);
-
-                      return (
-                        <button
-                          key={value}
-                          type="button"
-                          onClick={() => setRating(value)}
-                          onMouseEnter={() => setHoveredStar(value)}
-                          onMouseLeave={() => setHoveredStar(0)}
-                          className={`transition-all transform hover:scale-110 ${
-                            isActive
-                              ? "text-amber-500"
-                              : "text-gray-300 hover:text-gray-400"
-                          }`}
-                          aria-label={`Rate ${value} star`}
-                        >
-                          <Star
-                            size={28}
-                            className={isActive ? "fill-amber-500" : ""}
-                          />
-                        </button>
-                      );
-                    })}
-                  <span className="ml-3 text-gray-600 text-sm">
-                    {rating} out of 5
-                  </span>
-                </div>
-              </div>
-
-              {submitted && (
-                <div className="mt-6 p-4 bg-green-500/20 border border-green-500/50 rounded-lg text-green-700 text-sm flex items-center gap-2">
-                  <svg
-                    className="w-5 h-5"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  Thank you! Your feedback has been submitted successfully.
-                </div>
-              )}
-
-              <div className="mt-8 flex items-center gap-4 flex-wrap">
-                <button
-                  onClick={handleSubmit}
-                  className="bg-amber-600 hover:bg-amber-700 active:bg-amber-800 text-white px-6 py-3 text-sm font-semibold rounded-md inline-flex items-center gap-2 transition-colors"
-                >
-                  <Send size={18} />
-                  Submit Feedback
-                </button>
-                <div className="text-gray-500 text-sm">
-                  We truly value your experience.
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
