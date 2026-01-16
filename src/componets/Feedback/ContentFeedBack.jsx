@@ -303,6 +303,135 @@ const ContentFeedback = () => {
             </div>
           </div>
         </div>
+
+        <div className="mt-20">
+          <div className="rounded-3xl border border-slate-900/60 bg-slate-950/95 px-6 py-7 sm:px-8 sm:py-9 shadow-[0_28px_80px_rgba(15,23,42,0.9)]">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-8">
+              <div>
+                <p className="text-[11px] font-semibold tracking-[0.3em] uppercase text-sky-400">
+                  Global stays network
+                </p>
+                <h2 className="mt-2 text-xl md:text-2xl font-semibold text-white">
+                  Connected locations across the map
+                </h2>
+                <p className="mt-2 text-sm md:text-base text-slate-300 max-w-xl">
+                  We are expanding a connected collection of stays across key cities
+                  so every check-in feels familiar, wherever you land.
+                </p>
+              </div>
+              <div className="flex items-center gap-2 text-xs text-slate-400">
+                <span className="h-2 w-2 rounded-full bg-sky-400 shadow-[0_0_0_4px_rgba(56,189,248,0.35)]" />
+                <span>Active locations</span>
+              </div>
+            </div>
+
+            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-950 via-slate-950 to-slate-950">
+              <div className="pointer-events-none absolute inset-0">
+                <div className="absolute -top-32 -left-10 h-64 w-64 rounded-full bg-sky-500/15 blur-3xl" />
+                <div className="absolute -bottom-40 -right-10 h-80 w-80 rounded-full bg-sky-400/15 blur-3xl" />
+              </div>
+              <svg
+                viewBox="0 0 1200 500"
+                className="relative h-[260px] w-full"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <defs>
+                  <radialGradient id="mapGlow" cx="50%" cy="50%" r="75%">
+                    <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.28" />
+                    <stop offset="35%" stopColor="#020617" stopOpacity="0.9" />
+                    <stop offset="100%" stopColor="#020617" stopOpacity="1" />
+                  </radialGradient>
+                  <linearGradient id="arc" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.25" />
+                    <stop offset="50%" stopColor="#38bdf8" stopOpacity="0.9" />
+                    <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.2" />
+                  </linearGradient>
+                  <pattern
+                    id="dotGrid"
+                    x="0"
+                    y="0"
+                    width="18"
+                    height="18"
+                    patternUnits="userSpaceOnUse"
+                  >
+                    <circle cx="2" cy="2" r="1.3" fill="#0f172a" />
+                  </pattern>
+                </defs>
+
+                <rect
+                  x="0"
+                  y="0"
+                  width="1200"
+                  height="500"
+                  fill="url(#dotGrid)"
+                />
+                <rect
+                  x="0"
+                  y="0"
+                  width="1200"
+                  height="500"
+                  fill="url(#mapGlow)"
+                  opacity="0.95"
+                />
+
+                <path
+                  d="M180 320 C 320 190 460 160 590 210 S 880 260 1040 190"
+                  fill="none"
+                  stroke="url(#arc)"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M260 340 C 380 260 520 260 660 310 S 860 360 980 320"
+                  fill="none"
+                  stroke="url(#arc)"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  opacity="0.8"
+                />
+                <path
+                  d="M420 340 C 540 240 720 215 860 255 S 980 260 1080 225"
+                  fill="none"
+                  stroke="url(#arc)"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  opacity="0.7"
+                />
+
+                <g>
+                  <circle cx="190" cy="320" r="6" fill="#020617" />
+                  <circle cx="190" cy="320" r="3.2" fill="#38bdf8" />
+                  <circle cx="190" cy="320" r="9.5" fill="#38bdf8" opacity="0.22" />
+                </g>
+                <g>
+                  <circle cx="320" cy="360" r="6" fill="#020617" />
+                  <circle cx="320" cy="360" r="3.2" fill="#38bdf8" />
+                  <circle cx="320" cy="360" r="9.5" fill="#38bdf8" opacity="0.22" />
+                </g>
+                <g>
+                  <circle cx="510" cy="290" r="6" fill="#020617" />
+                  <circle cx="510" cy="290" r="3.2" fill="#38bdf8" />
+                  <circle cx="510" cy="290" r="9.5" fill="#38bdf8" opacity="0.22" />
+                </g>
+                <g>
+                  <circle cx="700" cy="250" r="6" fill="#020617" />
+                  <circle cx="700" cy="250" r="3.2" fill="#38bdf8" />
+                  <circle cx="700" cy="250" r="9.5" fill="#38bdf8" opacity="0.22" />
+                </g>
+                <g>
+                  <circle cx="880" cy="260" r="6" fill="#020617" />
+                  <circle cx="880" cy="260" r="3.2" fill="#38bdf8" />
+                  <circle cx="880" cy="260" r="9.5" fill="#38bdf8" opacity="0.22" />
+                </g>
+                <g>
+                  <circle cx="1040" cy="220" r="6" fill="#020617" />
+                  <circle cx="1040" cy="220" r="3.2" fill="#38bdf8" />
+                  <circle cx="1040" cy="220" r="9.5" fill="#38bdf8" opacity="0.22" />
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
