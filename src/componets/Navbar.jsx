@@ -83,7 +83,7 @@ const Navbar = () => {
         </div>
 
         {/* Main Navigation */}
-        <div className=" max-w-10/12 mx-auto px-4 lg:px-0">
+        <div className=" max-w-10/12 mx-auto px-0 lg:px-0">
           <nav className="flex items-center justify-between">
             {/* Logo */}
             <Link href="/" className="relative z-50 group">
@@ -214,24 +214,6 @@ const Navbar = () => {
               );
             })}
           </div>
-
-          {/* Mobile Contact Info */}
-          {/* <div className="flex flex-col items-center gap-4 mb-8 text-white/70 text-sm">
-            <a
-              href="tel:+18881234567"
-              className="flex items-center gap-2 hover:text-amber-400 transition-colors"
-            >
-              <Phone size={16} />
-              <span>+1 (888) 123-4567</span>
-            </a>
-            <a
-              href="mailto:reservations@luxestay.com"
-              className="flex items-center gap-2 hover:text-amber-400 transition-colors"
-            >
-              <Mail size={16} />
-              <span>RESERVATIONS@LUXESTAY.COM</span>
-            </a>
-          </div> */}
 
           {/* Mobile Auth Buttons */}
           <div className="flex flex-col gap-4 w-full max-w-xs px-6">

@@ -132,31 +132,35 @@ const NewOffer = ({ data = [] }) => {
               <Sparkles className="w-5 h-5" />
             </div>
 
-            <h1 className="text-6xl md:text-7xl font-black mb-6 leading-tight">
+            <h1 className="text-3xl md:text-7xl font-black mb-6 leading-tight">
               Stay in style
               <span className="block bg-gradient-to-r from-yellow-300 via-orange-300 to-pink-300 text-transparent bg-clip-text">
                 Save on premium rooms
               </span>
             </h1>
 
-            <p className="text-xl md:text-2xl mb-8 text-white/90 font-light">
+            <p className="text-md md:text-2xl mb-8 text-white/90 font-light">
               Curated hotel stays, suites, and escapes with flexible policies
               and limited‑time pricing.
             </p>
 
-            <div className="flex flex-wrap gap-4 justify-center items-center">
-              <div className="bg-white/20 backdrop-blur-sm px-6 py-4 rounded-2xl">
+            <div className="flex  gap-2  md:gap-4 justify-center items-center">
+              <div className="bg-white/20 backdrop-blur-sm px-3 md:px-6 py-4 rounded-2xl">
                 {/* <div className="text-3xl font-bold">{offers.length}+</div> */}
                 <div className="text-sm opacity-90">Handpicked stays</div>
               </div>
-              <div className="bg-white/20 backdrop-blur-sm px-6 py-4 rounded-2xl">
-                <div className="text-3xl font-bold">75%</div>
+              <div className="bg-white/20 backdrop-blur-sm px-5 md:px-6 py-4 rounded-2xl">
+                <div className=" text-xl md:text-3xl font-semibold  md:font-bold">
+                  75%
+                </div>
                 <div className="text-sm opacity-90">
                   Up to off nightly rates
                 </div>
               </div>
               <div className="bg-white/20 backdrop-blur-sm px-6 py-4 rounded-2xl">
-                <div className="text-3xl font-bold">24h</div>
+                <div className="text-xl md:text-3xl font-semibold  md:font-bold">
+                  24h
+                </div>
                 <div className="text-sm opacity-90">
                   Flexible check‑in options
                 </div>
@@ -179,7 +183,7 @@ const NewOffer = ({ data = [] }) => {
         </div>
       </div>
 
-      <div className=" mx-auto max-w-10/12 px-4 -mt-8 relative z-20">
+      <div className=" mx-auto md:max-w-10/12 px-4 -mt-8 relative z-20">
         {/* Filter Bar */}
         <div className="bg-white rounded-2xl shadow-xl p-4 md:p-6 border border-slate-200">
           <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
@@ -278,7 +282,7 @@ const NewOffer = ({ data = [] }) => {
       </div>
 
       {/* Results */}
-      <div className=" mx-auto max-w-10/12 px-4 py-12">
+      <div className=" mx-auto  md:max-w-10/12 px-4 py-12">
         <div className="mb-6 text-slate-500 text-sm font-medium">
           Showing {paginatedData.length} of {filteredData.length} stays
         </div>

@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import {
   Award,
   Users,
@@ -21,6 +22,16 @@ import {
   Target,
   Eye,
 } from "lucide-react";
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const fadeInUpSoft = {
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0 },
+};
 
 const AboutPage = () => {
   const [formData, setFormData] = useState({
@@ -167,7 +178,12 @@ const AboutPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
       {/* Hero Section */}
-      <div className="relative h-[70vh] bg-gradient-to-r from-slate-900 to-slate-800 overflow-hidden">
+      <motion.div
+        className="relative h-[70vh] bg-gradient-to-r from-slate-950 to-slate-900 overflow-hidden"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6 }}
+      >
         <div
           className="absolute inset-0 opacity-40"
           style={{
@@ -177,35 +193,66 @@ const AboutPage = () => {
             backgroundPosition: "center",
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 to-slate-800/80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/85 to-slate-800/85" />
 
-        <div className="relative h-full flex items-center justify-center text-center px-4">
+        <motion.div
+          className="relative h-full flex items-center justify-center text-center px-4"
+          variants={fadeInUp}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.7 }}
+        >
           <div className="max-w-4xl">
-            <h1 className="text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-amber-400 via-amber-300 to-amber-200 bg-clip-text text-transparent">
-              About Our Hotel
+            <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold text-amber-100 border border-white/15 mb-5 tracking-[0.25em] uppercase">
+              <Sparkles className="w-4 h-4 text-amber-300" />
+              <span>About Luxestay</span>
+            </div>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-amber-300 via-amber-200 to-amber-100 bg-clip-text text-transparent">
+              Where your stay feels designed for you
             </h1>
-            <p className="text-2xl text-slate-300 mb-8">
-              Where Luxury Meets Unforgettable Experiences
+            <p className="text-xl md:text-2xl text-slate-200 mb-6">
+              A modern luxury hotel brand crafted for effortless stays, warm
+              service, and memorable city moments.
             </p>
+            <div className="flex flex-wrap justify-center gap-3 mb-8 text-sm">
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-amber-50 border border-white/15">
+                <CheckCircle className="w-4 h-4 text-emerald-300" />
+                Premium rooms and suites
+              </span>
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-amber-50 border border-white/15">
+                <Clock className="w-4 h-4 text-amber-300" />
+                24/7 concierge support
+              </span>
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-amber-50 border border-white/15">
+                <Globe className="w-4 h-4 text-sky-300" />
+                Connected to the heart of the city
+              </span>
+            </div>
             <div className="flex justify-center gap-4">
               <button className="px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-xl font-semibold hover:from-amber-600 hover:to-amber-700 transition shadow-xl hover:shadow-2xl transform hover:scale-105">
-                Book Your Stay
+                Book your stay
               </button>
-              <button className="px-8 py-4 border-2 border-white text-white rounded-xl font-semibold hover:bg-white hover:text-slate-900 transition">
-                Contact Us
+              <button className="px-8 py-4 border-2 border-white/80 text-white rounded-xl font-semibold hover:bg-white hover:text-slate-900 transition">
+                Meet our team
               </button>
             </div>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Stats Section */}
       <div className="max-w-7xl mx-auto px-4 -mt-20 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {stats.map((stat, idx) => (
-            <div
+            <motion.div
               key={idx}
-              className="bg-white rounded-2xl p-8 shadow-2xl border-2 border-amber-100 text-center group hover:scale-105 transition-transform duration-300"
+              className="bg-white rounded-2xl p-8 shadow-2xl border-2 border-amber-100 text-center group"
+              variants={fadeInUpSoft}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.4, delay: idx * 0.08 }}
+              whileHover={{ y: -6, scale: 1.02 }}
             >
               <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-amber-100 to-amber-50 rounded-2xl mb-4 text-amber-600">
                 {stat.icon}
@@ -214,13 +261,20 @@ const AboutPage = () => {
                 {stat.number}
               </h3>
               <p className="text-slate-600 font-medium">{stat.label}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
 
       {/* Our Story Section */}
-      <div className="max-w-7xl mx-auto px-4 py-20">
+      <motion.div
+        className="max-w-7xl mx-auto px-4 py-20"
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ duration: 0.6 }}
+      >
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-5xl font-bold text-slate-900 mb-6">
@@ -233,10 +287,10 @@ const AboutPage = () => {
               of the most renowned luxury hotels in the region.
             </p>
             <p className="text-lg text-slate-700 mb-6 leading-relaxed">
-              We pride ourselves on blending timeless elegance with modern
-              comfort, creating a sanctuary where every guest feels at home. Our
-              commitment to excellence has earned us numerous accolades and,
-              more importantly, the trust of thousands of satisfied guests.
+              At Luxestay, we blend timeless elegance with modern comfort so
+              every arrival feels personal and every stay feels effortless.
+              Our commitment to excellence has earned us numerous accolades
+              and, more importantly, the trust of thousands of guests.
             </p>
             <p className="text-lg text-slate-700 leading-relaxed">
               Today, we continue to set new standards in hospitality, combining
@@ -244,7 +298,14 @@ const AboutPage = () => {
               accommodations to create memories that last a lifetime.
             </p>
           </div>
-          <div className="relative">
+          <motion.div
+            className="relative"
+            variants={fadeInUpSoft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{ duration: 0.5 }}
+          >
             <img
               src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800"
               alt="Hotel Lobby"
@@ -252,11 +313,11 @@ const AboutPage = () => {
             />
             <div className="absolute -bottom-6 -left-6 bg-amber-500 text-white p-6 rounded-xl shadow-xl">
               <p className="text-3xl font-bold">25+</p>
-              <p className="font-semibold">Years of Excellence</p>
+              <p className="font-semibold">Years of excellence in stays</p>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Mission & Vision */}
       <div className="bg-gradient-to-r from-slate-900 to-slate-800 py-20">
