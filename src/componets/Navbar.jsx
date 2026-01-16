@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Star, Headset } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import AuthButtons from "./AuthButtons/AuthButtons";
@@ -49,15 +49,17 @@ const Navbar = () => {
       >
         {/* Top Contact Bar - Desktop Only */}
         <div className="hidden lg:block border-b border-slate-200">
-          <div className=" max-w-10/12 mx-auto lg:px-9 py-3 flex justify-between items-center">
-            <div className="flex gap-8 text-xs tracking-wider text-slate-600">
+          <div className="max-w-10/12 mx-auto lg:px-9 py-3 flex justify-between items-center">
+            {/* Left Info */}
+            <div className="flex gap-8 text-xs tracking-wider text-slate-600 items-center">
               <a
-                href="tel:+18881234567"
+                href="tel:+8801613410880"
                 className="flex items-center gap-2 hover:text-amber-600 transition-colors duration-300"
               >
                 <Phone size={14} />
-                <span>01613410880</span>
+                <span>01613-410880</span>
               </a>
+
               <a
                 href="mailto:reservations@luxestay.com"
                 className="flex items-center gap-2 hover:text-amber-600 transition-colors duration-300"
@@ -65,18 +67,40 @@ const Navbar = () => {
                 <Mail size={14} />
                 <span>RESERVATIONS@LUXESTAY.COM</span>
               </a>
-              <span className="flex items-center gap-2">
+
+              <a
+                href="https://maps.google.com"
+                target="_blank"
+                className="flex items-center gap-2 hover:text-amber-600 transition-colors duration-300"
+              >
                 <MapPin size={14} />
                 <span>MIAMI BEACH, FLORIDA</span>
+              </a>
+
+              <span className="flex items-center gap-2">
+                <Clock size={14} />
+                <span>CHECK-IN 2:00 PM | CHECK-OUT 12:00 PM</span>
               </span>
             </div>
-            <div className="flex gap-6 text-xs tracking-wider">
+
+            {/* Right Info */}
+            <div className="flex gap-6 text-xs tracking-wider items-center">
+              <span className="flex items-center gap-1 text-slate-600">
+                <Star size={14} className="text-amber-500" />
+                <span>4.8 / 5</span>
+              </span>
+
+              <span className="flex items-center gap-2 text-slate-600">
+                <Headset size={14} />
+                <span>24/7 SUPPORT</span>
+              </span>
+
               <button className="text-slate-600 hover:text-amber-600 transition-colors duration-300">
-                EN
+                $EN
               </button>
               <span className="text-slate-300">|</span>
               <button className="text-slate-600 hover:text-amber-600 transition-colors duration-300">
-                USD
+                $USD
               </button>
             </div>
           </div>

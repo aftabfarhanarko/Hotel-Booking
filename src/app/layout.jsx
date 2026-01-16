@@ -28,7 +28,7 @@ export const metadata = {
     siteName: "Hotel Booking",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&auto=format&fit=crop&q=80",
+        url: "https://i.ibb.co.com/sdLpdvRx/image.png",
         width: 1200,
         height: 630,
         alt: "Hotel lobby with modern seating and warm lighting",
@@ -41,7 +41,7 @@ export const metadata = {
     description:
       "Book modern hotel stays with curated rooms, offers, and experiences.",
     images: [
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&auto=format&fit=crop&q=80",
+      "https://i.ibb.co.com/sdLpdvRx/image.png0",
     ],
   },
   icons: {
