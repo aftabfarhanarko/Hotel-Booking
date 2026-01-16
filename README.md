@@ -34,7 +34,7 @@ npm run dev
 3. Open the app in your browser:
 
 ```text
-http://localhost:3000
+https://job-task-theta.vercel.app
 ```
 
 ## Available Scripts
@@ -48,11 +48,7 @@ http://localhost:3000
 
 Create a `.env.local` file in the project root with at least:
 
-```bash
-NEXTAUTH_URL=http://localhost:3000
-NEXTAUTH_SECRET=your-strong-secret
-MONGODB_URI=your-mongodb-connection-string
-```
+
 
 Adjust the values for your environment and production deployment.
 
@@ -71,7 +67,7 @@ npm run build
 npm run start
 ```
 
-The app will be available at `http://localhost:3000`.
+The app will be available at `https://job-task-theta.vercel.app`.
 
 ## Project Structure
 
