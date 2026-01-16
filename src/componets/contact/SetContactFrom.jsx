@@ -33,11 +33,11 @@ const SetContactFrom = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-100  mt-3 pb-20">
+    <div className="bg-gradient-to-b from-slate-50 via-white to-slate-100 py-16 md:py-20">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
           <div className="space-y-6">
-            <span className="inline-flex items-center gap-2 rounded-full bg-amber-50 px-4 py-1 text-xs font-semibold tracking-[0.25em] text-amber-700 uppercase">
+            <span className="inline-flex items-center gap-2 rounded-full bg-amber-50 px-4 py-1 text-[10px] font-semibold tracking-[0.3em] text-amber-700 uppercase">
               <MessageSquare className="w-4 h-4" />
               Contact
             </span>
@@ -52,7 +52,7 @@ const SetContactFrom = () => {
 
             <div className="mt-4 space-y-4">
               <div className="flex gap-3 items-start">
-                <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center text-amber-700">
+                <div className="w-11 h-11 rounded-full bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-600">
                   <Phone className="w-5 h-5" />
                 </div>
                 <div>
@@ -69,7 +69,7 @@ const SetContactFrom = () => {
               </div>
 
               <div className="flex gap-3 items-start">
-                <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center text-amber-700">
+                <div className="w-11 h-11 rounded-full bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-600">
                   <Mail className="w-5 h-5" />
                 </div>
                 <div>
@@ -86,7 +86,7 @@ const SetContactFrom = () => {
               </div>
 
               <div className="flex gap-3 items-start">
-                <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center text-amber-700">
+                <div className="w-11 h-11 rounded-full bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-600">
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
@@ -103,7 +103,7 @@ const SetContactFrom = () => {
               </div>
 
               <div className="flex gap-3 items-start">
-                <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center text-amber-700">
+                <div className="w-11 h-11 rounded-full bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-600">
                   <Clock className="w-5 h-5" />
                 </div>
                 <div>
@@ -121,7 +121,7 @@ const SetContactFrom = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-[0_18px_45px_rgba(15,23,42,0.12)] border border-slate-200 p-6 md:p-8">
+          <div className="bg-white rounded-3xl shadow-[0_24px_60px_rgba(15,23,42,0.18)] border border-slate-200 p-6 md:p-8 md:translate-y-[-32px]">
             <h2 className="text-xl md:text-2xl font-semibold text-slate-900 mb-2">
               Send us a message
             </h2>
@@ -145,7 +145,7 @@ const SetContactFrom = () => {
                         message: "Name must be at least 2 characters",
                       },
                     })}
-                    className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none text-sm"
+                    className="w-full pl-10 pr-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-400/60 outline-none text-sm"
                     placeholder="Your name"
                   />
                 </div>
@@ -165,13 +165,13 @@ const SetContactFrom = () => {
                   <input
                     type="email"
                     {...register("email", {
-                      required: "Email is required",
+                      required: "Email address is required",
                       pattern: {
                         value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                         message: "Enter a valid email",
                       },
                     })}
-                    className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none text-sm"
+                    className="w-full pl-10 pr-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-400/60 outline-none text-sm"
                     placeholder="you@example.com"
                   />
                 </div>
@@ -191,7 +191,7 @@ const SetContactFrom = () => {
                   <input
                     type="tel"
                     {...register("phone")}
-                    className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none text-sm"
+                    className="w-full pl-10 pr-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-400/60 outline-none text-sm"
                     placeholder="+00 123 456 789"
                   />
                 </div>
@@ -206,7 +206,7 @@ const SetContactFrom = () => {
                   {...register("subject", {
                     required: "Subject is required",
                   })}
-                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none text-sm"
+                  className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-400/60 outline-none text-sm"
                   placeholder="Booking question, group stay, special request..."
                 />
                 {errors.subject && (
@@ -225,11 +225,11 @@ const SetContactFrom = () => {
                   {...register("message", {
                     required: "Message is required",
                     minLength: {
-                      value: 10,
-                      message: "Message must be at least 10 characters",
+                      value: 12,
+                      message: "Message must be at least 12 characters",
                     },
                   })}
-                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none text-sm resize-none"
+                  className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-400/60 outline-none text-sm resize-none"
                   placeholder="Tell us how we can help with your stay."
                 />
                 {errors.message && (
@@ -241,7 +241,7 @@ const SetContactFrom = () => {
 
               <button
                 type="submit"
-                className="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl"
+                className="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl"
               >
                 Send message
               </button>
