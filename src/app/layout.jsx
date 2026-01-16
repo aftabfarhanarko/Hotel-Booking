@@ -20,7 +20,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${baiJamjuree.variable} antialiased`}>
+      <body className={`${baiJamjuree.variable} antialiased bg-slate-50 text-slate-900`}>
         <AuthProvider>
           <Navbar />
           <main>{children}</main>

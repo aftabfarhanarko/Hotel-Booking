@@ -22,8 +22,7 @@ const BookigData = ({ data }) => {
             No bookings found
           </h3>
           <p className="text-slate-500">
-            You do not have any bookings yet. New reservations will appear
-            here.
+            You do not have any bookings yet. New reservations will appear here.
           </p>
         </div>
       </div>

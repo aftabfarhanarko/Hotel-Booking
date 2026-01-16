@@ -40,12 +40,12 @@ const NewRoom = () => {
   ];
 
   return (
-    <section className="bg-slate-900 text-white py-20">
+    <section className="bg-white text-slate-900 py-20">
       <div className="container mx-auto max-w-7xl px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>
             <div className="mb-8">
-              <h3 className="text-sm tracking-[0.35em] uppercase text-amber-500">
+              <h3 className="text-sm tracking-[0.35em] uppercase text-amber-600">
                 News From Us
               </h3>
               <div className="mt-1 h-px w-12 bg-amber-500"></div>
@@ -53,18 +53,18 @@ const NewRoom = () => {
             <div className="space-y-8">
               {news.map((item) => (
                 <Link key={item.title} href={item.href} className="group block">
-                  <div className="flex items-start gap-6 pb-8 border-b border-white/10">
-                    <div className="bg-amber-600 text-white w-16 h-16 rounded-md flex flex-col items-center justify-center">
+                  <div className="flex items-start gap-6 pb-8 border-b border-slate-200">
+                    <div className="bg-amber-600 text-white w-16 h-16 rounded-md flex flex-col items-center justify-center shadow-sm">
                       <span className="text-xl font-bold">{item.date.day}</span>
                       <span className="text-xs tracking-wide">
                         {item.date.month}
                       </span>
                     </div>
                     <div className="flex-1">
-                      <h4 className="text-lg font-serif font-semibold group-hover:text-amber-500 transition-colors">
+                      <h4 className="text-lg font-serif font-semibold text-slate-900 group-hover:text-amber-600 transition-colors">
                         {item.title}
                       </h4>
-                      <p className="text-white/70 mt-2 text-sm">
+                      <p className="text-slate-600 mt-2 text-sm">
                         {item.excerpt}
                       </p>
                     </div>
@@ -74,7 +74,7 @@ const NewRoom = () => {
               <div className="mt-4">
                 <Link
                   href="/news"
-                  className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors"
+                  className="inline-flex items-center gap-2 text-amber-700 hover:text-amber-800 transition-colors"
                 >
                   <span className="underline underline-offset-4">
                     Read All News
@@ -87,7 +87,7 @@ const NewRoom = () => {
 
           <div>
             <div className="mb-8">
-              <h3 className="text-sm tracking-[0.35em] uppercase text-amber-500">
+              <h3 className="text-sm tracking-[0.35em] uppercase text-amber-600">
                 Gallery
               </h3>
               <div className="mt-1 h-px w-12 bg-amber-500"></div>
@@ -98,7 +98,7 @@ const NewRoom = () => {
                   key={idx}
                   className={`${
                     idx === 0 ? "col-span-3 md:col-span-2 row-span-2" : ""
-                  } overflow-hidden rounded-lg`}
+                  } overflow-hidden rounded-lg shadow-sm`}
                 >
                   <img
                     src={src}

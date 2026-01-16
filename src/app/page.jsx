@@ -5,7 +5,7 @@ import NewSectionns from "@/componets/home/NewSectionns";
 
 export default function Home() {
   return (
-    <div className="font-sans text-gray-900">
+    <div className="min-h-screen font-sans bg-slate-50 text-slate-900 pt-32 pb-16">
       <Banner />
 
       <Content />

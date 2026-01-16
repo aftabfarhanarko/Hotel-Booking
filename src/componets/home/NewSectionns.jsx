@@ -307,13 +307,13 @@ const NewSectionns = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-slate-900">
+      <section className="py-20 bg-white">
         <div className="container mx-auto max-w-7xl px-6">
           <div className="flex items-end justify-between mb-8">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-white">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-slate-900">
               Deals & Offers
             </h2>
-            <Link href="/offers" className="text-amber-400 font-semibold">
+            <Link href="/offers" className="text-amber-600 font-semibold">
               View All
             </Link>
           </div>
@@ -322,17 +322,17 @@ const NewSectionns = () => {
               <Link
                 key={deal.title}
                 href={deal.href}
-                className="rounded-2xl bg-white/5 border border-white/10 p-6 hover:border-amber-400/60 hover:bg-white/10 transition-all shadow-[0_18px_45px_rgba(15,23,42,0.8)]"
+                className="rounded-2xl bg-white border border-slate-200 p-6 hover:border-amber-400/70 hover:shadow-md transition-all shadow-sm"
               >
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs uppercase tracking-[0.2em] text-amber-400">
+                  <span className="text-xs uppercase tracking-[0.2em] text-amber-600">
                     {deal.tag}
                   </span>
                 </div>
-                <h3 className="text-lg font-serif font-semibold text-white mb-2">
+                <h3 className="text-lg font-serif font-semibold text-slate-900 mb-2">
                   {deal.title}
                 </h3>
-                <p className="text-white/75 text-sm">{deal.desc}</p>
+                <p className="text-slate-600 text-sm">{deal.desc}</p>
               </Link>
             ))}
           </div>
@@ -376,13 +376,13 @@ const NewSectionns = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-slate-900">
+      <section className="py-20 bg-slate-50">
         <div className="container mx-auto max-w-7xl px-6">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-4xl font-serif font-bold text-white">
+            <h2 className="text-4xl font-serif font-bold text-slate-900">
               Spa & Wellness
             </h2>
-            <p className="text-white/70 mt-4">
+            <p className="text-slate-600 mt-4">
               Restorative rituals and tranquil spaces for inner balance.
             </p>
           </div>
@@ -391,7 +391,7 @@ const NewSectionns = () => {
               <Link
                 key={w.title}
                 href={w.href}
-                className="group rounded-2xl overflow-hidden bg-white/5 ring-1 ring-white/10 hover:ring-white/20 transition-all"
+                className="group rounded-2xl overflow-hidden bg-white shadow-xl ring-1 ring-slate-200 hover:ring-slate-300 transition-all"
               >
                 <div className="relative h-56">
                   <img
@@ -530,13 +530,13 @@ const NewSectionns = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-slate-900">
+      <section className="py-20 bg-slate-50">
         <div className="container mx-auto max-w-7xl px-6">
           <div className="flex items-end justify-between mb-8">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-white">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-slate-900">
               Awards & Recognition
             </h2>
-            <Link href="/awards" className="text-amber-500 font-semibold">
+            <Link href="/awards" className="text-amber-600 font-semibold">
               View All
             </Link>
           </div>
@@ -544,10 +544,10 @@ const NewSectionns = () => {
             {awards.map((a) => (
               <div
                 key={a.title}
-                className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6"
+                className="rounded-2xl bg-white ring-1 ring-slate-200 p-6 shadow-sm"
               >
-                <div className="text-amber-500 text-sm">{a.year}</div>
-                <div className="text-white mt-2 font-medium">{a.title}</div>
+                <div className="text-amber-600 text-sm">{a.year}</div>
+                <div className="text-slate-900 mt-2 font-medium">{a.title}</div>
               </div>
             ))}
           </div>
@@ -661,14 +661,14 @@ const NewSectionns = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-slate-900">
+      <section className="py-20 bg-slate-50">
         <div className="container mx-auto max-w-7xl px-6">
           <div className="grid grid-cols-1 lg:grid-cols-[2fr_1.5fr] gap-10 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-white">
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-slate-900">
                 Get the best deals in your inbox
               </h2>
-              <p className="text-white/70 mt-4">
+              <p className="text-slate-600 mt-4">
                 Subscribe to receive member-only offers, flash sales, and travel
                 tips.
               </p>
@@ -676,7 +676,7 @@ const NewSectionns = () => {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 rounded-full px-4 py-3 text-sm bg-white text-slate-900 placeholder-slate-500 focus:outline-none"
+                  className="flex-1 rounded-full px-4 py-3 text-sm bg-white text-slate-900 placeholder-slate-500 focus:outline-none border border-slate-200"
                 />
                 <button
                   type="submit"
@@ -685,24 +685,24 @@ const NewSectionns = () => {
                   Sign Up
                 </button>
               </form>
-              <p className="text-xs text-white/60 mt-3">
+              <p className="text-xs text-slate-500 mt-3">
                 No spam. Unsubscribe anytime.
               </p>
             </div>
-            <div className="rounded-2xl bg-white/5 border border-white/15 p-6">
-              <h3 className="text-white font-semibold mb-3">
+            <div className="rounded-2xl bg-white border border-slate-200 p-6 shadow-sm">
+              <h3 className="text-slate-900 font-semibold mb-3">
                 Hotel Categories
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {categories.map((c) => (
                   <div
                     key={c.label}
-                    className="rounded-xl bg-slate-950/70 border border-white/10 p-4"
+                    className="rounded-xl bg-slate-50 border border-slate-200 p-4"
                   >
-                    <div className="text-amber-400 font-semibold text-sm">
+                    <div className="text-amber-600 font-semibold text-sm">
                       {c.label}
                     </div>
-                    <p className="text-white/75 text-xs mt-1">{c.desc}</p>
+                    <p className="text-slate-700 text-xs mt-1">{c.desc}</p>
                   </div>
                 ))}
               </div>

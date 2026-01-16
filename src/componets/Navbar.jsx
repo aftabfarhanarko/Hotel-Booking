@@ -43,26 +43,24 @@ const Navbar = () => {
       </div> */}
 
       <header
-        className={`fixed w-full z-50 py-5 transition-all duration-300 ${
-          scrolled
-            ? "bg-slate-950/95 backdrop-blur shadow-[0_18px_45px_rgba(15,23,42,0.8)]"
-            : "bg-slate-900"
+        className={`fixed w-full z-50 py-5 bg-white/90 backdrop-blur transition-all duration-300 border-b ${
+          scrolled ? "shadow-[0_18px_45px_rgba(15,23,42,0.15)]" : "shadow-none"
         }`}
       >
         {/* Top Contact Bar - Desktop Only */}
-        <div className="hidden lg:block border-b border-white/10">
+        <div className="hidden lg:block border-b border-slate-200">
           <div className=" max-w-10/12 mx-auto lg:px-9 py-3 flex justify-between items-center">
-            <div className="flex gap-8 text-xs tracking-wider text-white/70">
+            <div className="flex gap-8 text-xs tracking-wider text-slate-600">
               <a
                 href="tel:+18881234567"
-                className="flex items-center gap-2 hover:text-amber-400 transition-colors duration-300"
+                className="flex items-center gap-2 hover:text-amber-600 transition-colors duration-300"
               >
                 <Phone size={14} />
                 <span>01613410880</span>
               </a>
               <a
                 href="mailto:reservations@luxestay.com"
-                className="flex items-center gap-2 hover:text-amber-400 transition-colors duration-300"
+                className="flex items-center gap-2 hover:text-amber-600 transition-colors duration-300"
               >
                 <Mail size={14} />
                 <span>RESERVATIONS@LUXESTAY.COM</span>
@@ -73,11 +71,11 @@ const Navbar = () => {
               </span>
             </div>
             <div className="flex gap-6 text-xs tracking-wider">
-              <button className="text-white/70 hover:text-amber-400 transition-colors duration-300">
+              <button className="text-slate-600 hover:text-amber-600 transition-colors duration-300">
                 EN
               </button>
-              <span className="text-white/30">|</span>
-              <button className="text-white/70 hover:text-amber-400 transition-colors duration-300">
+              <span className="text-slate-300">|</span>
+              <button className="text-slate-600 hover:text-amber-600 transition-colors duration-300">
                 USD
               </button>
             </div>
@@ -90,11 +88,11 @@ const Navbar = () => {
             {/* Logo */}
             <Link href="/" className="relative z-50 group">
               <div className="flex flex-col">
-                <span className="text-3xl font-serif text-white tracking-[0.3em] font-light">
+                <span className="text-3xl font-serif text-slate-900 tracking-[0.3em] font-light">
                   LUXE
-                  <span className="text-amber-400 font-normal">STAY</span>
+                  <span className="text-amber-600 font-normal">STAY</span>
                 </span>
-                <span className="text-[9px] tracking-[0.4em] text-white/60 mt-1 group-hover:text-amber-400 transition-colors duration-300">
+                <span className="text-[9px] tracking-[0.4em] text-slate-500 mt-1 group-hover:text-amber-600 transition-colors duration-300">
                   LUXURY RESORT & SPA
                 </span>
               </div>
@@ -109,13 +107,13 @@ const Navbar = () => {
                     href={link.href}
                     className={`relative px-5 py-2 text-[11px] uppercase tracking-[0.15em] font-medium transition-all duration-300 group ${
                       isActive
-                        ? "text-amber-300"
-                        : "text-white/90 hover:text-white"
+                        ? "text-amber-600"
+                        : "text-slate-700 hover:text-slate-900"
                     }`}
                   >
                     {link.name}
                     <span
-                      className={`absolute bottom-0 h-[2px] bg-amber-400 transition-all duration-300 ${
+                      className={`absolute bottom-0 h-[2px] bg-amber-500 transition-all duration-300 ${
                         isActive
                           ? "w-3/4 left-[12.5%]"
                           : "w-0 left-1/2 group-hover:w-3/4 group-hover:left-[12.5%]"
@@ -129,7 +127,7 @@ const Navbar = () => {
             <div className="hidden lg:flex items-center gap-3">
               <Link
                 href="/offers"
-                className="rounded-full border border-amber-400/60 px-4 py-2 text-[11px] uppercase tracking-[0.18em] text-amber-200 hover:bg-amber-400 hover:text-slate-950 transition-colors duration-300"
+                className="rounded-full border border-amber-600/70 px-4 py-2 text-[11px] uppercase tracking-[0.18em] text-amber-700 hover:bg-amber-600 hover:text-white transition-colors duration-300 bg-amber-50"
               >
                 Book now
               </Link>
@@ -139,23 +137,23 @@ const Navbar = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden relative z-50 w-10 h-10 flex items-center justify-center text-white focus:outline-none"
+              className="lg:hidden relative z-50 w-10 h-10 flex items-center justify-center text-slate-900 focus:outline-none"
             >
               <div className="relative w-6 h-5">
                 <span
-                  className={`absolute w-full h-0.5 bg-white transition-all duration-300 ${
+                  className={`absolute w-full h-0.5 bg-slate-900 transition-all duration-300 ${
                     isOpen
                       ? "top-1/2 rotate-45 transform -translate-y-1/2"
                       : "top-0"
                   }`}
                 ></span>
                 <span
-                  className={`absolute w-full h-0.5 bg-white top-1/2 transform -translate-y-1/2 transition-all duration-300 ${
+                  className={`absolute w-full h-0.5 bg-slate-900 top-1/2 transform -translate-y-1/2 transition-all duration-300 ${
                     isOpen ? "opacity-0" : "opacity-100"
                   }`}
                 ></span>
                 <span
-                  className={`absolute w-full h-0.5 bg-white transition-all duration-300 ${
+                  className={`absolute w-full h-0.5 bg-slate-900 transition-all duration-300 ${
                     isOpen
                       ? "top-1/2 -rotate-45 transform -translate-y-1/2"
                       : "bottom-0"
@@ -175,7 +173,7 @@ const Navbar = () => {
       >
         {/* Backdrop */}
         <div
-          className={`absolute inset-0 bg-slate-900/98 backdrop-blur-sm transition-opacity duration-500 ${
+          className={`absolute inset-0 bg-white/95 backdrop-blur-sm transition-opacity duration-500 ${
             isOpen ? "opacity-100" : "opacity-0"
           }`}
           onClick={() => setIsOpen(false)}
@@ -189,8 +187,8 @@ const Navbar = () => {
         >
           {/* Mobile Logo */}
           <div className="absolute top-8 left-1/2 transform -translate-x-1/2">
-            <span className="text-2xl font-serif text-white tracking-[0.3em] font-light">
-              LUXE<span className="text-amber-400">STAY</span>
+            <span className="text-2xl font-serif text-slate-900 tracking-[0.3em] font-light">
+              LUXE<span className="text-amber-600">STAY</span>
             </span>
           </div>
 
@@ -204,8 +202,8 @@ const Navbar = () => {
                   onClick={() => setIsOpen(false)}
                   className={`text-xl font-light tracking-[0.2em] transition-all duration-300 transform hover:scale-105 ${
                     isActive
-                      ? "text-amber-300"
-                      : "text-white hover:text-amber-400"
+                      ? "text-amber-600"
+                      : "text-slate-800 hover:text-amber-600"
                   }`}
                   style={{
                     transitionDelay: isOpen ? `${index * 50}ms` : "0ms",

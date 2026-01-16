@@ -7,7 +7,7 @@ const Feedbackpage = async () => {
 
     
     return (
-        <div className=" pt-20">
+        <div className="min-h-screen bg-slate-50 pt-32 pb-16">
             <ContentFeedback/>
         </div>
     );

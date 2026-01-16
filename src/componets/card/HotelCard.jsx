@@ -12,7 +12,7 @@ export default function HotelCard({ room }) {
 
   return (
     <motion.article
-      className="max-w-sm rounded-3xl bg-slate-950/95 border border-slate-800 shadow-[0_22px_70px_rgba(15,23,42,0.7)] overflow-hidden"
+      className="max-w-sm rounded-3xl bg-white border border-slate-200 shadow-[0_18px_45px_rgba(15,23,42,0.12)] overflow-hidden"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ y: -8, scale: 1.02 }}
@@ -26,23 +26,23 @@ export default function HotelCard({ room }) {
           whileHover={{ scale: 1.04 }}
           transition={{ duration: 0.4 }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/10 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-slate-950/5 to-transparent" />
 
         {room.discount > 0 && (
-          <div className="absolute top-4 left-4 rounded-full bg-emerald-500 text-white px-3 py-1 text-xs font-semibold shadow-lg shadow-emerald-500/40">
+          <div className="absolute top-4 left-4 rounded-full bg-emerald-500 text-white px-3 py-1 text-xs font-semibold shadow-md shadow-emerald-500/40">
             {room.discount}% off
           </div>
         )}
 
         <motion.button
           onClick={() => setSaved(!saved)}
-          className="absolute top-4 right-4 bg-slate-950/80 text-slate-100 p-2 rounded-full border border-slate-700 shadow-lg"
+          className="absolute top-4 right-4 bg-white/90 text-slate-800 p-2 rounded-full border border-slate-200 shadow-md"
           whileTap={{ scale: 0.9 }}
           whileHover={{ scale: 1.05 }}
         >
           <Heart
             className={`w-5 h-5 ${
-              saved ? "fill-emerald-400 text-emerald-400" : "text-slate-200"
+              saved ? "fill-emerald-500 text-emerald-500" : "text-slate-500"
             }`}
           />
         </motion.button>
@@ -58,18 +58,18 @@ export default function HotelCard({ room }) {
         </div>
       </div>
 
-      <div className="p-5 space-y-4 text-slate-100">
+      <div className="p-5 space-y-4 text-slate-900">
         <div>
           <h3 className="text-lg font-semibold tracking-tight line-clamp-1">
             {room.title}
           </h3>
-          <div className="mt-2 flex items-center text-slate-300 text-xs">
-            <MapPin className="w-4 h-4 mr-1 text-emerald-300" />
+          <div className="mt-2 flex items-center text-slate-500 text-xs">
+            <MapPin className="w-4 h-4 mr-1 text-emerald-500" />
             <span className="truncate">{room.location}</span>
           </div>
         </div>
 
-        <p className="text-slate-300 text-xs leading-relaxed line-clamp-2">
+        <p className="text-slate-500 text-xs leading-relaxed line-clamp-2">
           {room.description}
         </p>
 
@@ -78,7 +78,7 @@ export default function HotelCard({ room }) {
             {room.tags.map((tag, index) => (
               <span
                 key={index}
-                className="px-2.5 py-1 rounded-full bg-slate-900 text-[10px] uppercase tracking-[0.16em] text-slate-200 border border-slate-700/80"
+                className="px-2.5 py-1 rounded-full bg-slate-100 text-[10px] uppercase tracking-[0.16em] text-slate-700 border border-slate-200"
               >
                 {tag}
               </span>
@@ -86,43 +86,43 @@ export default function HotelCard({ room }) {
           </div>
         )}
 
-        <div className="flex items-center justify-between text-xs text-slate-300">
+        <div className="flex items-center justify-between text-xs text-slate-500">
           <div className="flex items-center gap-2">
             <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-            <span className="font-semibold text-slate-50">
+            <span className="font-semibold text-slate-900">
               {room.rating}
             </span>
-            <span className="text-slate-400">
+            <span className="text-slate-500">
               ({room.reviews} reviews)
             </span>
           </div>
-          <span className="text-slate-400">
+          <span className="text-slate-500">
             {room.saved.toLocaleString()} saved
           </span>
         </div>
 
-        <div className="flex items-center justify-between pt-4 border-t border-slate-800">
+        <div className="flex items-center justify-between pt-4 border-t border-slate-200">
           <div>
             <div className="flex items-baseline gap-2">
               {room.discount > 0 && (
-                <span className="text-slate-500 line-through text-xs">
+                <span className="text-slate-400 line-through text-xs">
                   ${room.priceFrom}
                 </span>
               )}
-              <span className="text-xl font-semibold text-emerald-300">
+              <span className="text-xl font-semibold text-emerald-600">
                 ${discountedPrice}
               </span>
-              <span className="text-slate-400 text-xs">/ night</span>
+              <span className="text-slate-500 text-xs">/ night</span>
             </div>
             {typeof room.stock === "number" && room.stock <= 15 && (
-              <p className="text-rose-400 text-[11px] mt-1">
+              <p className="text-rose-500 text-[11px] mt-1">
                 Only {room.stock} left at this price
               </p>
             )}
           </div>
           <Link
             href={`/offers/${room._id}`}
-            className="inline-flex items-center justify-center rounded-xl bg-emerald-500 px-4 py-2 text-xs font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 hover:bg-emerald-400 transition-colors"
+            className="inline-flex items-center justify-center rounded-xl bg-amber-500 px-4 py-2 text-xs font-semibold text-white shadow-md shadow-amber-500/30 hover:bg-amber-600 transition-colors"
           >
             View details
           </Link>

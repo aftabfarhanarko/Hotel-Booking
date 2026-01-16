@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import {
@@ -26,6 +26,7 @@ export default function OfferDetailsClient({ item }) {
   const [checkInDate, setCheckInDate] = useState("");
   const [checkOutDate, setCheckOutDate] = useState("");
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
   const {
     register,
     handleSubmit,
@@ -33,10 +34,7 @@ export default function OfferDetailsClient({ item }) {
     formState: { errors },
   } = useForm();
 
-  const refrances = useRef(null);
-
   const session = useSession();
-  //   console.log(session.data.user);
 
   const images = useMemo(() => {
     const list = [];
@@ -75,11 +73,11 @@ export default function OfferDetailsClient({ item }) {
   }, [nightlyPrice, nights, rooms]);
 
   const openBooking = () => {
-    refrances.current.showModal();
+    setIsBookingOpen(true);
   };
 
   const closeBooking = () => {
-    refrances.current.close();
+    setIsBookingOpen(false);
   };
 
   const onSubmitBooking = async (data) => {
@@ -103,7 +101,7 @@ export default function OfferDetailsClient({ item }) {
     if (savedata.insertedId) {
       toast.success("Your Order Has Been Placed Successfully");
       reset();
-      refrances.current.close();
+      setIsBookingOpen(false);
     }
     console.log(savedata);
 
@@ -623,7 +621,7 @@ export default function OfferDetailsClient({ item }) {
 
       {/* Open the modal using document.getElementById('ID').showModal() method */}
 
-      <dialog ref={refrances} className="modal modal-bottom z-60">
+      <dialog open={isBookingOpen} className="modal modal-bottom z-60">
         <div className="modal-box bg-transparent border-none p-0">
           <motion.div
             className="py-10 pt-30 inset-0 z-40 flex justify-center items-center"
