@@ -3,13 +3,11 @@ import "./globals.css";
 import Navbar from "@/componets/Navbar";
 import Footer from "@/componets/Footer";
 import AuthProvider from "@/providers/AuthProvider";
-import { Toaster } from 'sonner'
+import { Toaster } from "sonner";
 
 const baiJamjuree = Bai_Jamjuree({
   variable: "--font-bai-jamjuree",
-  subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700"],
-  style: ["normal", "italic"],
+  weight: [ "500"],
 });
 
 export const metadata = {
@@ -20,7 +18,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${baiJamjuree.variable} antialiased bg-slate-50 text-slate-900`}>
+      <body
+        className={`${baiJamjuree.variable} antialiased bg-slate-50 text-slate-900`}
+      >
         <AuthProvider>
           <Navbar />
           <main>{children}</main>

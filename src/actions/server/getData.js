@@ -44,3 +44,12 @@ export const mybookingData = async () => {
     _id: item._id.toString(),
   }));
 };
+
+export const deleteBooking = async (id) => {
+  const users = await getServerSession(authOptions);
+  const result = await dbConnect(collections.ORDER).deleteOne({
+    _id: new ObjectId(id),
+    customeremail: users?.user?.email,
+  });
+  return { ...result, deletedId: id };
+};

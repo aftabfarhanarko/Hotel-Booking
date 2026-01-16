@@ -609,7 +609,7 @@ export default function OfferDetailsClient({ item }) {
                 >
                   Book now
                 </button>
-                <p className="text-xs text-slate-400 text-center">
+                <p className="text-xs text-slate-400">
                   You will confirm guest details and payment information on the
                   next step.
                 </p>
